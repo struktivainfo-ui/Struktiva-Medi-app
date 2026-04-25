@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<title>struktiva – Medikamenten App v10.0</title>
+<title>struktiva – Medikamenten App v11.0</title>
 <meta name="theme-color" content="#0ea5e9">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22struktiva%22%2C%22short_name%22%3A%22struktiva%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23020617%22%2C%22theme_color%22%3A%22%230ea5e9%22%2C%22description%22%3A%22struktiva%20v10.0%20Medikamenten%20PWA%20offline-first%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20512%20512%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20rx%3D%27112%27%20fill%3D%27%230ea5e9%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27white%27%20stroke-width%3D%2732%27%20stroke-linecap%3D%27round%27%3E%3Cpath%20d%3D%27M176%20256h160M256%20176v160%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22struktiva%22%2C%22short_name%22%3A%22struktiva%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23020617%22%2C%22theme_color%22%3A%22%230ea5e9%22%2C%22description%22%3A%22struktiva%20v11.0%20Medikamenten%20PWA%20offline-first%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20512%20512%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20rx%3D%27112%27%20fill%3D%27%230ea5e9%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27white%27%20stroke-width%3D%2732%27%20stroke-linecap%3D%27round%27%3E%3Cpath%20d%3D%27M176%20256h160M256%20176v160%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
 <style>
 :root{--bg:#020617;--bg2:#0b1220;--card:#0f172acc;--card2:#111e36cc;--line:#1e293b;--text:#e2e8f0;--muted:#94a3b8;--acc:#0ea5e9;--ok:#22c55e;--warn:#f59e0b;--err:#ef4444}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -88,7 +88,7 @@ nav svg{width:22px;height:22px}
     <div class="logo">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
     </div>
-    <div>strukt<span style="color:#7dd3fc">iva</span> <small class="muted">v10.0</small></div>
+    <div>strukt<span style="color:#7dd3fc">iva</span> <small class="muted">v11.0</small></div>
   </div>
   <div class="userbox">
     <small>Hallo</small>
@@ -244,8 +244,8 @@ nav svg{width:22px;height:22px}
       </div>
 
       <div class="card">
-        <h3>Über struktiva v10.0</h3>
-        <p class="muted">Verbesserungen gegenüber v10.0: echtes Web Manifest für Install-Prompt, Kundename persistent oben, 5 eigene Klingeltöne, verbesserter QR/PZN-Scanner mit Kameraauswahl, 600+ Arzneimittel lokal, Dashboard mit Adhärenz, Drag-Kalender, Push mit Service Worker, komplett offline-first, alles inline ohne CDN.</p>
+        <h3>Über struktiva v11.0</h3>
+        <p class="muted">Verbesserungen gegenüber v9.7: echtes Web Manifest für Install-Prompt, Kundename persistent oben, 5 eigene Klingeltöne, verbesserter QR/PZN-Scanner mit Kameraauswahl, 600+ Arzneimittel lokal, Dashboard mit Adhärenz, Drag-Kalender, Push mit Service Worker, komplett offline-first, alles inline ohne CDN.</p>
         <div class="row" style="flex-wrap:wrap">
           <span class="kbd">PWA</span><span class="kbd">DE</span><span class="kbd">DSGVO-freundlich</span><span class="kbd">100% lokal</span>
         </div>
@@ -411,197 +411,125 @@ document.addEventListener('click',()=>{ensureAudio(); if(audioCtx && audioCtx.st
 })();
 </script>
 
-<!-- struktiva v10.0 - Onboarding -->
+<!-- struktiva v11.0 - Monetarisierung -->
 <style>
-.onboard{position:fixed;inset:0;background:#020617;z-index:30000;display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto}
-.onboard-card{background:#0f172a;border:1px solid #1e293b;border-radius:20px;max-width:420px;width:100%;padding:32px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
-.onboard h1{color:#22c55e;font-size:28px;margin:0 0 8px;font-weight:800}
-.onboard .tag{color:#94a3b8;font-size:14px;margin-bottom:24px}
-.onboard .step{display:none}
-.onboard .step.active{display:block;animation:fade .3s}
-@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.onboard .progress{display:flex;gap:6px;margin-bottom:24px}
-.onboard .dot{height:4px;flex:1;background:#1e293b;border-radius:2px;transition:.3s}
-.onboard .dot.active{background:#22c55e}
-.onboard .feature{display:flex;gap:12px;margin:16px 0;align-items:flex-start}
-.onboard .feature-icon{width:40px;height:40px;background:#14532d;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-.onboard .feature-text h3{color:#e2e8f0;margin:0 0 4px;font-size:15px}
-.onboard .feature-text p{color:#94a3b8;margin:0;font-size:13px;line-height:1.4}
-.onboard input{width:100%;background:#020617;border:1px solid #334155;color:white;padding:14px;border-radius:10px;font-size:16px;margin:8px 0}
-.onboard button.primary{width:100%;background:#22c55e;color:#0f172a;border:none;padding:14px;border-radius:10px;font-weight:700;font-size:16px;margin-top:16px;cursor:pointer}
-.onboard button.secondary{background:transparent;color:#94a3b8;border:1px solid #334155;padding:12px;border-radius:10px;width:100%;margin-top:8px;cursor:pointer}
-.onboard .time-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
-.onboard .time-btn{background:#020617;border:1px solid #334155;color:#e2e8f0;padding:12px;border-radius:8px;cursor:pointer;text-align:center}
-.onboard .time-btn.selected{background:#14532d;border-color:#22c55e;color:#22c55e}
-.onboard .trust{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
-.onboard .trust-badge{background:#020617;border:1px solid #1e293b;padding:6px 10px;border-radius:20px;font-size:11px;color:#94a3b8}
+.paywall{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:40000;display:none;align-items:center;justify-content:center;padding:20px}
+.paywall-card{background:linear-gradient(180deg,#0f172a,#020617);border:2px solid #22c55e;border-radius:24px;max-width:380px;width:100%;padding:32px;text-align:center}
+.paywall h2{color:#22c55e;font-size:24px;margin:0 0 8px}
+.paywall .price{font-size:42px;font-weight:800;color:white;margin:16px 0}
+.paywall .price span{font-size:16px;color:#94a3b8;font-weight:400}
+.paywall ul{list-style:none;padding:0;margin:20px 0;text-align:left}
+.paywall li{padding:8px 0;color:#e2e8f0;display:flex;gap:10px;align-items:center}
+.paywall li:before{content:"✓";color:#22c55e;font-weight:bold}
+.paywall .btn-pro{background:#22c55e;color:#0f172a;border:none;width:100%;padding:16px;border-radius:12px;font-weight:700;font-size:16px;margin:12px 0;cursor:pointer}
+.paywall .btn-later{background:transparent;color:#64748b;border:none;padding:8px;cursor:pointer;font-size:13px}
+.pro-badge{background:#22c55e;color:#0f172a;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;margin-left:6px}
 </style>
 
-<div id="onboard" class="onboard" style="display:none">
-  <div class="onboard-card">
-    <div class="progress">
-      <div class="dot active" id="d1"></div>
-      <div class="dot" id="d2"></div>
-      <div class="dot" id="d3"></div>
-      <div class="dot" id="d4"></div>
-    </div>
-
-    <!-- Step 1: Was ist das -->
-    <div class="step active" id="s1">
-      <h1>struktiva</h1>
-      <div class="tag">Die einfachste Medikamenten-Erinnerung – ohne Chaos</div>
-      
-      <div class="feature">
-        <div class="feature-icon">🔒</div>
-        <div class="feature-text">
-          <h3>100% privat</h3>
-          <p>Alle Daten bleiben auf deinem Handy. Keine Cloud, keine Anmeldung.</p>
-        </div>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">🇩🇪</div>
-        <div class="feature-text">
-          <h3>Entwickelt in Deutschland</h3>
-          <p>DSGVO-konform. Kein Tracking. Kein Medizinprodukt.</p>
-        </div>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">⏰</div>
-        <div class="feature-text">
-          <h3>Zuverlässig erinnern</h3>
-          <p>Push auch bei gesperrtem Bildschirm. Funktioniert offline.</p>
-        </div>
-      </div>
-
-      <div class="trust">
-        <span class="trust-badge">✓ Ohne Werbung</span>
-        <span class="trust-badge">✓ Ohne Abo</span>
-        <span class="trust-badge">✓ Offline</span>
-      </div>
-
-      <button class="primary" onclick="nextStep(2)">Los geht's – 60 Sekunden</button>
-      <button class="secondary" onclick="showLegal()">Erst rechtliche Hinweise</button>
-    </div>
-
-    <!-- Step 2: Name -->
-    <div class="step" id="s2">
-      <h1>Wie heißt du?</h1>
-      <div class="tag">Damit wir dich persönlich erinnern können</div>
-      <input id="ob-name" placeholder="z.B. Maria" autocomplete="name" />
-      <p style="color:#64748b;font-size:12px;margin-top:8px">Wird nur lokal gespeichert</p>
-      <button class="primary" onclick="saveName()">Weiter</button>
-    </div>
-
-    <!-- Step 3: Erstes Medikament -->
-    <div class="step" id="s3">
-      <h1>Dein erstes Medikament</h1>
-      <div class="tag">Du kannst später mehr hinzufügen</div>
-      <input id="ob-med" placeholder="z.B. L-Thyroxin" list="medlist" />
-      <datalist id="medlist">
-        <option value="L-Thyroxin"><option value="Metformin"><option value="Ramipril"><option value="Ibuprofen"><option value="Pantoprazol">
-      </datalist>
-      
-      <p style="color:#e2e8f0;margin:16px 0 8px;font-size:14px">Wann nimmst du es?</p>
-      <div class="time-grid">
-        <div class="time-btn" onclick="selectTime(this,'08:00')">Morgens<br><small>08:00</small></div>
-        <div class="time-btn" onclick="selectTime(this,'12:00')">Mittags<br><small>12:00</small></div>
-        <div class="time-btn" onclick="selectTime(this,'18:00')">Abends<br><small>18:00</small></div>
-        <div class="time-btn" onclick="selectTime(this,'22:00')">Nachts<br><small>22:00</small></div>
-      </div>
-      <button class="primary" onclick="saveMed()">Weiter</button>
-    </div>
-
-    <!-- Step 4: Test -->
-    <div class="step" id="s4">
-      <h1>Fast fertig!</h1>
-      <div class="tag">Teste jetzt die Erinnerung</div>
-      
-      <div style="background:#020617;border-radius:12px;padding:16px;margin:20px 0;text-align:center">
-        <div style="font-size:40px;margin-bottom:8px">🔔</div>
-        <p style="color:#e2e8f0;margin:0">Tippe auf "Testen" – du bekommst sofort eine Benachrichtigung</p>
-      </div>
-      
-      <button class="primary" onclick="testPush()">🔔 Erinnerung testen</button>
-      <button class="secondary" onclick="finishOnboard()">Überspringen</button>
-      
-      <p style="color:#64748b;font-size:11px;text-align:center;margin-top:20px">Danach ist struktiva bereit. Du findest alle Funktionen im Menü.</p>
-    </div>
+<div id="paywall" class="paywall">
+  <div class="paywall-card">
+    <div style="font-size:48px;margin-bottom:12px">💊</div>
+    <h2>Upgrade auf struktiva Pro</h2>
+    <p style="color:#94a3b8;margin:0">Nie wieder Medikamente vergessen</p>
+    
+    <div class="price">2,99€<span>/Monat</span></div>
+    <p style="color:#64748b;font-size:13px;margin-top:-12px">oder 19,99€/Jahr (spare 44%)</p>
+    
+    <ul>
+      <li>Unbegrenzt Medikamente</li>
+      <li>Familien-Modus (bis 5 Profile)</li>
+      <li>PDF-Report für deinen Arzt</li>
+      <li>Erinnerungs-Historie unbegrenzt</li>
+      <li>Prioritäts-Support</li>
+    </ul>
+    
+    <button class="btn-pro" onclick="startCheckout('monthly')">Pro starten – 2,99€/Monat</button>
+    <button class="btn-pro" style="background:#14532d;color:#22c55e" onclick="startCheckout('yearly')">Jährlich 19,99€</button>
+    <button class="btn-later" onclick="closePaywall()">Später</button>
+    
+    <p style="color:#475569;font-size:11px;margin-top:16px">Kündigung jederzeit. Keine Cloud – alles bleibt lokal.</p>
   </div>
 </div>
 
 <script>
-// v10 Onboarding
+// v11 Freemium
 (function(){
-  const OB_KEY = 'struktiva_onboard_v10';
-  let selectedTime = '08:00';
+  const PRO_KEY = 'struktiva_pro';
+  const FREE_LIMIT = 1;
   
-  function checkOnboard(){
-    if(!localStorage.getItem(OB_KEY)){
-      document.getElementById('onboard').style.display = 'flex';
-    }
-  }
-  
-  window.nextStep = function(n){
-    document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
-    document.getElementById('s'+n).classList.add('active');
-    document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active', i < n));
-  };
-  
-  window.saveName = function(){
-    const name = document.getElementById('ob-name').value.trim() || 'Du';
-    localStorage.setItem('struktiva_name', name);
-    nextStep(3);
-  };
-  
-  window.selectTime = function(el, time){
-    document.querySelectorAll('.time-btn').forEach(b=>b.classList.remove('selected'));
-    el.classList.add('selected');
-    selectedTime = time;
-  };
-  
-  window.saveMed = function(){
-    const med = document.getElementById('ob-med').value.trim();
-    if(!med){ alert('Bitte Medikament eingeben'); return; }
+  window.struktivaPro = {
+    isPro(){ return localStorage.getItem(PRO_KEY) === '1'; },
     
-    // Speichere in localStorage (einfache Version)
-    const meds = JSON.parse(localStorage.getItem('struktiva_meds') || '[]');
-    meds.push({id:Date.now(), name:med, time:selectedTime, days:[1,2,3,4,5,6,0]});
-    localStorage.setItem('struktiva_meds', JSON.stringify(meds));
-    nextStep(4);
-  };
-  
-  window.testPush = async function(){
-    if('Notification' in window){
-      const perm = await Notification.requestPermission();
-      if(perm === 'granted'){
-        new Notification('struktiva bereit ✓', {
-          body: 'So wirst du erinnert. Funktioniert auch offline.',
-          icon: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgcng9IjMyIiBmaWxsPSIjMDIwNjE3Ii8+PHRleHQgeD0iOTYiIHk9IjEyMCIgZm9udC1zaXplPSI4MCIgZmlsbD0iIzIyYzU1ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UzwvdGV4dD48L3N2Zz4='
-        });
-        setTimeout(finishOnboard, 1500);
-      } else {
-        alert('Bitte Benachrichtigungen erlauben in den Einstellungen');
-        finishOnboard();
-      }
-    } else {
-      finishOnboard();
+    checkLimit(){
+      if(this.isPro()) return true;
+      const meds = JSON.parse(localStorage.getItem('struktiva_meds') || '[]');
+      return meds.length < FREE_LIMIT;
+    },
+    
+    showPaywall(reason='limit'){
+      document.getElementById('paywall').style.display = 'flex';
+      // Tracking
+      console.log('Paywall shown:', reason);
+      if(window.gtag) gtag('event', 'paywall_view', {reason});
     }
   };
   
-  window.finishOnboard = function(){
-    localStorage.setItem(OB_KEY, '1');
-    document.getElementById('onboard').style.display = 'none';
-    location.reload();
+  window.closePaywall = function(){
+    document.getElementById('paywall').style.display = 'none';
   };
   
-  window.showLegal = function(){
-    alert('struktiva ist kein Medizinprodukt und ersetzt keine ärztliche Beratung. Alle Daten bleiben lokal auf deinem Gerät.');
+  window.startCheckout = function(plan){
+    // Platzhalter für Stripe/PayPal
+    const isTest = confirm('Demo: Pro freischalten?\n\nIn echt: Hier würde Stripe Checkout öffnen.\nPlan: ' + plan);
+    if(isTest){
+      localStorage.setItem(PRO_KEY, '1');
+      closePaywall();
+      alert('✓ struktiva Pro aktiviert! (Demo)');
+      location.reload();
+    }
+    // ECHT: 
+    // fetch('/api/checkout', {method:'POST', body:JSON.stringify({plan})})
+    //   .then(r=>r.json()).then(d=>location.href=d.url)
   };
   
+  // Hook in Medikament hinzufügen
+  const originalAdd = window.addMed || function(){};
   document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(checkOnboard, 400);
-    // Auto-select morgens
-    setTimeout(()=>document.querySelector('.time-btn')?.classList.add('selected'), 600);
+    setTimeout(() => {
+      // Zeige Pro-Badge
+      if(struktivaPro.isPro()){
+        const header = document.querySelector('h1, .logo');
+        if(header && !header.querySelector('.pro-badge')){
+          header.innerHTML += '<span class="pro-badge">PRO</span>';
+        }
+      }
+      
+      // Überwache Add-Buttons
+      document.querySelectorAll('button').forEach(btn => {
+        if(btn.textContent.includes('hinzufügen') || btn.textContent.includes('Hinzufügen')){
+          const orig = btn.onclick;
+          btn.onclick = (e) => {
+            if(!struktivaPro.checkLimit()){
+              e.preventDefault();
+              e.stopPropagation();
+              struktivaPro.showPaywall('add_med');
+              return false;
+            }
+            if(orig) orig.call(btn, e);
+          };
+        }
+      });
+      
+      // Nach 3 Tagen Nutzung Paywall zeigen (Demo: nach 30 Sek)
+      if(!struktivaPro.isPro() && !localStorage.getItem('struktiva_paywall_shown')){
+        setTimeout(() => {
+          if(Math.random() > 0.5){ // 50% Chance
+            struktivaPro.showPaywall('engagement');
+            localStorage.setItem('struktiva_paywall_shown', '1');
+          }
+        }, 30000);
+      }
+    }, 1000);
   });
 })();
 </script>

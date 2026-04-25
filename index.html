@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<title>struktiva – Medikamenten App v9.8</title>
+<title>struktiva – Medikamenten App v9.8.1</title>
 <meta name="theme-color" content="#0ea5e9">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22struktiva%22%2C%22short_name%22%3A%22struktiva%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23020617%22%2C%22theme_color%22%3A%22%230ea5e9%22%2C%22description%22%3A%22struktiva%20v9.8%20Medikamenten%20PWA%20offline-first%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20512%20512%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20rx%3D%27112%27%20fill%3D%27%230ea5e9%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27white%27%20stroke-width%3D%2732%27%20stroke-linecap%3D%27round%27%3E%3Cpath%20d%3D%27M176%20256h160M256%20176v160%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22struktiva%22%2C%22short_name%22%3A%22struktiva%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23020617%22%2C%22theme_color%22%3A%22%230ea5e9%22%2C%22description%22%3A%22struktiva%20v9.8.1%20Medikamenten%20PWA%20offline-first%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20512%20512%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20rx%3D%27112%27%20fill%3D%27%230ea5e9%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27white%27%20stroke-width%3D%2732%27%20stroke-linecap%3D%27round%27%3E%3Cpath%20d%3D%27M176%20256h160M256%20176v160%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
 <style>
 :root{--bg:#020617;--bg2:#0b1220;--card:#0f172acc;--card2:#111e36cc;--line:#1e293b;--text:#e2e8f0;--muted:#94a3b8;--acc:#0ea5e9;--ok:#22c55e;--warn:#f59e0b;--err:#ef4444}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -88,7 +88,7 @@ nav svg{width:22px;height:22px}
     <div class="logo">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
     </div>
-    <div>strukt<span style="color:#7dd3fc">iva</span> <small class="muted">v9.8</small></div>
+    <div>strukt<span style="color:#7dd3fc">iva</span> <small class="muted">v9.8.1</small></div>
   </div>
   <div class="userbox">
     <small>Hallo</small>
@@ -244,8 +244,8 @@ nav svg{width:22px;height:22px}
       </div>
 
       <div class="card">
-        <h3>Über struktiva v9.8</h3>
-        <p class="muted">Verbesserungen gegenüber v9.7: echtes Web Manifest für Install-Prompt, Kundename persistent oben, 5 eigene Klingeltöne, verbesserter QR/PZN-Scanner mit Kameraauswahl, 600+ Arzneimittel lokal, Dashboard mit Adhärenz, Drag-Kalender, Push mit Service Worker, komplett offline-first, alles inline ohne CDN.</p>
+        <h3>Über struktiva v9.8.1</h3>
+        <p class="muted">Verbesserungen gegenüber v9.8.1: echtes Web Manifest für Install-Prompt, Kundename persistent oben, 5 eigene Klingeltöne, verbesserter QR/PZN-Scanner mit Kameraauswahl, 600+ Arzneimittel lokal, Dashboard mit Adhärenz, Drag-Kalender, Push mit Service Worker, komplett offline-first, alles inline ohne CDN.</p>
         <div class="row" style="flex-wrap:wrap">
           <span class="kbd">PWA</span><span class="kbd">DE</span><span class="kbd">DSGVO-freundlich</span><span class="kbd">100% lokal</span>
         </div>
@@ -410,5 +410,124 @@ document.addEventListener('DOMContentLoaded',init);
 document.addEventListener('click',()=>{ensureAudio(); if(audioCtx && audioCtx.state==='suspended') audioCtx.resume()},{once:true});
 })();
 </script>
+
+<script>
+// struktiva v9.8.1.1 - Kamera Fix
+window.struktivaCamera = {
+  stream: null,
+  async startScanner(videoElement, onResult) {
+    try {
+      // Stoppe alte Streams
+      if (this.stream) {
+        this.stream.getTracks().forEach(t => t.stop());
+      }
+      
+      // Prüfe Berechtigung
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        throw new Error('Kamera nicht unterstützt');
+      }
+      
+      // Frage explizit nach Kamera
+      this.stream = await navigator.mediaDevices.getUserMedia({
+        video: {
+          facingMode: { ideal: 'environment' },
+          width: { ideal: 1280 },
+          height: { ideal: 720 }
+        },
+        audio: false
+      });
+      
+      videoElement.srcObject = this.stream;
+      await videoElement.play();
+      
+      // ZXing Scanner starten (falls vorhanden)
+      if (window.ZXing) {
+        const codeReader = new ZXing.BrowserMultiFormatReader();
+        const scan = async () => {
+          try {
+            const result = await codeReader.decodeOnceFromVideoDevice(undefined, videoElement);
+            if (result && onResult) onResult(result.text);
+          } catch(e) {
+            if (this.stream) requestAnimationFrame(scan);
+          }
+        };
+        scan();
+      }
+      
+      return true;
+    } catch (err) {
+      console.error('Kamera-Fehler:', err);
+      let msg = 'Kamera-Fehler: ';
+      if (err.name === 'NotAllowedError') {
+        msg += 'Bitte in den Browser-Einstellungen Kamera für struktiva erlauben. iPhone: Einstellungen > Safari > Kamera';
+      } else if (err.name === 'NotFoundError') {
+        msg += 'Keine Kamera gefunden';
+      } else if (err.name === 'NotReadableError') {
+        msg += 'Kamera wird bereits verwendet. Schließe andere Apps.';
+      } else {
+        msg += err.message;
+      }
+      alert(msg + '\n\nTipp: Seite neu laden und erneut erlauben.');
+      return false;
+    }
+  },
+  
+  stop() {
+    if (this.stream) {
+      this.stream.getTracks().forEach(t => t.stop());
+      this.stream = null;
+    }
+  }
+};
+
+// Ersetze alle Scanner-Buttons
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    document.querySelectorAll('button').forEach(btn => {
+      if (btn.textContent.includes('Scannen') || btn.textContent.includes('Scanner') || btn.textContent.includes('PZN')) {
+        btn.onclick = async (e) => {
+          e.preventDefault();
+          // Erstelle Video-Overlay
+          let overlay = document.getElementById('camera-overlay');
+          if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'camera-overlay';
+            overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:black;z-index:10000;display:flex;flex-direction:column';
+            overlay.innerHTML = `
+              <div style="padding:12px;background:#0f172a;color:white;display:flex;justify-content:space-between;align-items:center">
+                <span>Scanner - Kamera auf Code richten</span>
+                <button id="close-cam" style="background:#ef4444;color:white;border:none;padding:8px 16px;border-radius:6px">Schließen</button>
+              </div>
+              <video id="scanner-video" style="flex:1;width:100%;object-fit:cover" autoplay playsinline></video>
+              <div style="padding:12px;background:#0f172a;color:#94a3b8;text-align:center;font-size:12px">
+                Bei Fehler: Einstellungen > Kamera erlauben
+              </div>
+            `;
+            document.body.appendChild(overlay);
+            document.getElementById('close-cam').onclick = () => {
+              window.struktivaCamera.stop();
+              overlay.remove();
+            };
+          }
+          const video = document.getElementById('scanner-video');
+          const ok = await window.struktivaCamera.startScanner(video, (code) => {
+            window.struktivaCamera.stop();
+            overlay.remove();
+            // Füge Code in Input ein
+            const input = document.querySelector('input[type="text"], input[placeholder*="PZN"], input[placeholder*="Code"]');
+            if (input) {
+              input.value = code;
+              input.dispatchEvent(new Event('input', {bubbles:true}));
+            }
+            alert('Gescannt: ' + code);
+          });
+          if (!ok) overlay.remove();
+        };
+      }
+    });
+  }, 1000);
+});
+</script>
+
 </body>
 </html>

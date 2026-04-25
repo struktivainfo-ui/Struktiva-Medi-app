@@ -1,0 +1,6 @@
+v10.0 - Onboarding Release
+- 4-Schritt Onboarding (60 Sek)
+- Nutzer versteht App sofort
+- 1. Medikament wird direkt angelegt
+- Push-Test integriert
+- Vertrauen: 100% offline, DE, kein Tracking

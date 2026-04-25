@@ -1,18 +1,14 @@
 {
-  "name": "struktiva \u2013 Medikamenten-Erinnerung",
+  "name": "struktiva",
   "short_name": "struktiva",
-  "description": "Die einfachste Medikamenten-Erinnerung f\u00fcr den Alltag \u2013 ohne Chaos. Kein Medizinprodukt.",
+  "description": "Die einfachste Medikamenten-Erinnerung f\u00fcr den Alltag \u2013 ohne Chaos",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#020617",
   "theme_color": "#0f172a",
-  "categories": [
-    "health",
-    "productivity"
-  ],
   "icons": [
     {
-      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjgwIiBmaWxsPSIjMDIwNjE3Ii8+PHRleHQgeD0iMjU2IiB5PSIzMjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMDAiIGZpbGw9IiMyMmM1NWUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlM8L3RleHQ+PC9zdmc+",
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBmaWxsPSIjMDIwNjE3IiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjgwIi8+PHRleHQgeD0iMjU2IiB5PSIzMjAiIGZpbGw9IiMyMmM1NWUiIGZvbnQtc2l6ZT0iMjAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiPlM8L3RleHQ+PC9zdmc+",
       "sizes": "512x512",
       "type": "image/svg+xml"
     }

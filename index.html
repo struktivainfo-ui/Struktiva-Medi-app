@@ -2,625 +2,412 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>struktiva</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>struktiva – Medikamenten App v9.8</title>
 <meta name="theme-color" content="#0ea5e9">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script>
-// Manifest als data URL eingebettet
-const manifestData = {
-  name: "struktiva",
-  short_name: "struktiva",
-  description: "Medikamenten App v9.7 – Offline PWA",
-  start_url: "./",
-  scope: "./",
-  display: "standalone",
-  background_color: "#020617",
-  theme_color: "#0ea5e9",
-  icons: [{
-    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='120' fill='%230ea5e9'/%3E%3Cg fill='none' stroke='white' stroke-width='42' stroke-linecap='round'%3E%3Cpath d='M168 256h176'/%3E%3Cpath d='M256 168v176'/%3E%3C/g%3E%3C/svg%3E",
-    sizes: "512x512",
-    type: "image/svg+xml",
-    purpose: "any maskable"
-  }]
-};
-document.addEventListener('DOMContentLoaded', () => {
-  const link = document.createElement('link');
-  link.rel = 'manifest';
-  link.href = 'data:application/manifest+json,' + encodeURIComponent(JSON.stringify(manifestData));
-  document.head.appendChild(link);
-});
-</script>
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22struktiva%22%2C%22short_name%22%3A%22struktiva%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23020617%22%2C%22theme_color%22%3A%22%230ea5e9%22%2C%22description%22%3A%22struktiva%20v9.8%20Medikamenten%20PWA%20offline-first%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20512%20512%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20rx%3D%27112%27%20fill%3D%27%230ea5e9%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27white%27%20stroke-width%3D%2732%27%20stroke-linecap%3D%27round%27%3E%3Cpath%20d%3D%27M176%20256h160M256%20176v160%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
 <style>
+:root{--bg:#020617;--bg2:#0b1220;--card:#0f172acc;--card2:#111e36cc;--line:#1e293b;--text:#e2e8f0;--muted:#94a3b8;--acc:#0ea5e9;--ok:#22c55e;--warn:#f59e0b;--err:#ef4444}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;height:100%;background:#020617;color:#e2e8f0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial,sans-serif}
-:root{--bg:#020617;--panel:#0b1220cc;--card:#0f172a;--card2:#111c30;--border:#1e293b;--muted:#94a3b8;--text:#e2e8f0;--accent:#0ea5e9;--ok:#22c55e;--warn:#f59e0b;--danger:#ef4444;--radius:18px;--shadow:0 10px 30px rgba(2,8,23,.5)}
-#app{min-height:100dvh;display:grid;grid-template-rows:auto 1fr auto}
-.header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:linear-gradient(180deg,rgba(2,6,23,.92),rgba(2,6,23,.65));backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
-.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.3px;font-size:20px}
-.brand .logo{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#6366f1);display:grid;place-items:center;box-shadow:0 6px 18px rgba(14,165,233,.35)}
-.brand .logo svg{width:20px;height:20px;color:white}
-.user{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:.2s}
-.user:hover{transform:translateY(-1px);border-color:#334155}
-.user b{color:white;font-weight:700}
-.user svg{width:16px;height:16px;color:var(--muted)}
-.layout{display:grid;grid-template-columns:240px 1fr;gap:0}
-@media(max-width:960px){.layout{grid-template-columns:1fr}.sidebar{display:none}}
-.sidebar{position:sticky;top:64px;height:calc(100dvh - 64px);padding:16px;border-right:1px solid var(--border);background:linear-gradient(180deg,rgba(15,23,42,.6),rgba(2,6,23,.2))}
-.nav{display:flex;flex-direction:column;gap:6px}
-.nav button{display:flex;align-items:center;gap:12px;width:100%;padding:12px 14px;background:transparent;border:1px solid transparent;border-radius:12px;color:var(--muted);font-size:15px;font-weight:600;cursor:pointer;text-align:left;transition:.2s}
-.nav button.active,.nav button:hover{background:var(--card2);color:white;border-color:var(--border)}
-.nav button svg{width:20px;height:20px}
-main{padding:20px;max-width:1200px;margin:0 auto;width:100%}
+html,body{height:100%}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Inter,Arial,sans-serif;background:radial-gradient(1200px 800px at 80% -10%,#0ea5e933,transparent),linear-gradient(180deg,var(--bg),var(--bg2));color:var(--text);overscroll-behavior:none}
+header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:rgba(2,6,23,.7);backdrop-filter:saturate(140%) blur(14px);border-bottom:1px solid #1e293b80}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.3px}
+.brand .logo{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#0ea5e9,#22d3ee);display:grid;place-items:center;box-shadow:0 6px 20px #0ea5e955}
+.brand b{color:#7dd3fc}
+.userbox{text-align:right}
+.userbox small{color:var(--muted);font-size:11px}
+.userbox strong{display:block;font-size:14px;margin-top:2px}
+.install{position:sticky;top:60px;z-index:40;margin:0 12px;display:none;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;background:#082f49cc;border:1px solid #0369a1aa;border-radius:12px;backdrop-filter:blur(10px)}
+.install.show{display:flex}
+.install button{background:#0ea5e9;border:none;color:#001; padding:8px 12px;border-radius:10px;font-weight:700}
+main{padding:16px 14px 92px;max-width:1100px;margin:0 auto}
 .view{display:none;animation:fade .25s ease}
 .view.active{display:block}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.grid{display:grid;gap:14px}
-.grid.cols-4{grid-template-columns:repeat(4,1fr)}
-.grid.cols-3{grid-template-columns:repeat(3,1fr)}
-.grid.cols-2{grid-template-columns:repeat(2,1fr)}
-@media(max-width:900px){.grid.cols-4{grid-template-columns:repeat(2,1fr)}.grid.cols-3{grid-template-columns:1fr}.grid.cols-2{grid-template-columns:1fr}}
-.card{background:linear-gradient(180deg,rgba(17,28,48,.9),rgba(11,18,32,.9));border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);backdrop-filter:blur(6px)}
-.card h3{margin:0 0 6px;font-size:13px;color:var(--muted);font-weight:800;letter-spacing:.4px;text-transform:uppercase}
-.card .value{font-size:28px;font-weight:900;letter-spacing:.3px}
-.card .sub{color:var(--muted);font-size:13px;margin-top:4px}
-.kpi{display:flex;align-items:center;justify-content:space-between}
-.badge{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;font-size:12px;font-weight:700;border:1px solid var(--border);background:#0b1220;color:#cbd5e1}
-.badge.ok{background:rgba(34,197,94,.15);color:#86efac;border-color:rgba(34,197,94,.3)}
-.badge.warn{background:rgba(245,158,11,.15);color:#fcd34d;border-color:rgba(245,158,11,.3)}
-.list{display:flex;flex-direction:column;gap:8px;max-height:60vh;overflow:auto;padding-right:4px}
-.item{display:flex;gap:12px;align-items:center;padding:12px;border:1px solid var(--border);border-radius:14px;background:var(--card);transition:.15s}
-.item:hover{transform:translateY(-1px);border-color:#334155}
-.item .icon{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,#0ea5e9,#6366f1);flex:0 0 40px}
+.grid{display:grid;gap:12px}
+.cols-2{grid-template-columns:1fr 1fr}
+.cols-3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:900px){.cols-2,.cols-3{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid #1e293b; border-radius:18px;padding:14px;box-shadow:0 10px 30px #0005}
+.card h3{margin:2px 0 10px;font-size:15px;color:#bae6fd;letter-spacing:.3px}
+.row{display:flex;align-items:center;gap:10px}
+.spread{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.muted{color:var(--muted)}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#0b2236;border:1px solid #123a57;font-size:12px;color:#a5f3fc}
+.btn{appearance:none;border:1px solid #1e3a5f;background:#0b1a2e;color:#e2f4ff;padding:10px 14px;border-radius:12px;font-weight:600;cursor:pointer;transition:.15s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px #0004}
+.btn.acc{background:linear-gradient(135deg,#0ea5e9,#22d3ee);color:#001f2b;border:none}
+.btn.ghost{background:transparent}
+.btn.small{padding:7px 10px;font-size:13px;border-radius:10px}
+input,select,textarea{width:100%;background:#0a1426;border:1px solid #1f2e48;color:var(--text);padding:11px 12px;border-radius:12px;font-size:15px;outline:none}
+input:focus,select:focus{border-color:#0ea5e9;box-shadow:0 0 0 3px #0ea5e933}
+.list{display:grid;gap:8px;max-height:50vh;overflow:auto;padding-right:4px}
+.item{display:flex;align-items:center;gap:10px;padding:10px;border:1px solid #1e293b;background:#0a162a80;border-radius:14px}
+.item .icon{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:#0b2236;border:1px solid #123a57}
 .item .meta{flex:1;min-width:0}
 .item .meta b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.item .meta span{color:var(--muted);font-size:12px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:#0b1220;color:white;font-weight:700;cursor:pointer;transition:.2s;font-size:14px}
-.btn:hover{transform:translateY(-1px);border-color:#334155}
-.btn.primary{background:linear-gradient(135deg,var(--accent),#6366f1);border-color:transparent;box-shadow:0 8px 20px rgba(14,165,233,.25)}
-.btn.ghost{background:transparent}
-.btn.small{padding:6px 10px;font-size:12px;border-radius:10px}
-.input,select,textarea{width:100%;padding:12px 14px;background:#0b1220;border:1px solid var(--border);border-radius:12px;color:white;font-size:15px;outline:none}
-.input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(14,165,233,.2)}
-.row{display:flex;gap:10px;align-items:center}
-.row.wrap{flex-wrap:wrap}
-.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-.search{position:relative;flex:1}
-.search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--muted)}
-.search input{padding-left:38px}
-.scanner{border-radius:16px;overflow:hidden;border:1px solid var(--border);background:black;position:relative;aspect-ratio:3/4;max-height:58vh}
-.scanner video{width:100%;height:100%;object-fit:cover}
-.scan-overlay{position:absolute;inset:0;box-shadow:inset 0 0 0 2px rgba(14,165,233,.6)}
-.scan-overlay:after{content:'';position:absolute;left:50%;top:50%;width:68%;height:38%;transform:translate(-50%,-50%);border:2px solid rgba(255,255,255,.9);border-radius:16px;box-shadow:0 0 0 2000px rgba(0,0,0,.45)}
-.tabs{display:flex;background:var(--card);border:1px solid var(--border);padding:4px;border-radius:12px;gap:4px}
-.tabs button{flex:1;padding:8px 12px;border-radius:8px;background:transparent;border:0;color:var(--muted);font-weight:700;cursor:pointer}
-.tabs button.active{background:#0b1220;color:white}
-.calendar-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:8px;flex-wrap:wrap}
-.cal-grid{display:grid;grid-template-columns:80px 1fr;gap:0;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--card)}
-.cal-times{border-right:1px solid var(--border);background:#0a1020}
-.cal-times div{height:48px;padding:6px 8px;font-size:12px;color:var(--muted);border-bottom:1px dashed #1f2a44}
-.cal-slot{position:relative;height:1152px}
-.cal-hour{position:absolute;left:0;right:0;height:48px;border-bottom:1px dashed #1f2a44}
-.cal-event{position:absolute;left:8px;right:8px;padding:8px 10px;border-radius:10px;background:linear-gradient(135deg,rgba(14,165,233,.28),rgba(99,102,241,.28));border:1px solid rgba(56,189,248,.45);cursor:grab;box-shadow:0 6px 16px rgba(2,8,23,.4);font-size:13px}
-.cal-event:active{cursor:grabbing}
-.cal-week{display:grid;grid-template-columns:80px repeat(7,1fr);gap:0;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--card)}
-.cal-col{border-left:1px solid var(--border);position:relative}
-.week-head{position:sticky;top:0;z-index:2;background:#0b1220;border-bottom:1px solid var(--border);padding:8px;text-align:center;font-weight:700;font-size:13px}
-.tabbar{position:sticky;bottom:0;z-index:40;display:none;grid-template-columns:repeat(5,1fr);gap:6px;padding:8px;background:rgba(2,6,23,.88);backdrop-filter:blur(12px);border-top:1px solid var(--border)}
-@media(max-width:960px){.tabbar{display:grid}}
-.tabbar button{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border-radius:12px;background:transparent;border:0;color:var(--muted);font-size:11px;font-weight:700}
-.tabbar button.active{color:white;background:var(--card2)}
-.tabbar svg{width:22px;height:22px}
-.footer{opacity:.7;font-size:12px;color:var(--muted);text-align:center;padding:20px}
-.switch{position:relative;width:44px;height:26px;background:#0b1220;border:1px solid var(--border);border-radius:999px;cursor:pointer}
-.switch span{position:absolute;top:2px;left:2px;width:20px;height:20px;background:white;border-radius:50%;transition:.2s}
-.switch.on{background:rgba(14,165,233,.3);border-color:var(--accent)}
-.switch.on span{left:20px;background:var(--accent)}
-.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#0b1220;border:1px solid var(--border);padding:10px 14px;border-radius:12px;box-shadow:var(--shadow);z-index:100;display:none}
-.toast.show{display:block;animation:fade .2s}
-hr{border:0;border-top:1px solid var(--border);margin:14px 0}
-pill{display:inline-flex;padding:2px 8px;border-radius:999px;background:#0b1220;border:1px solid var(--border);font-size:11px;color:var(--muted);margin-left:6px}
+.item .meta small{color:var(--muted)}
+.kbd{font-family:ui-monospace,monospace;background:#0b2236;border:1px solid #123a57;padding:2px 6px;border-radius:6px;font-size:12px}
+
+.ring{--p:0; width:110px;height:110px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--acc) calc(var(--p)*1%), #13233d 0);position:relative}
+.ring::after{content:"";position:absolute;inset:10px;background:var(--card2);border-radius:50%;border:1px solid #1e293b}
+.ring span{position:relative;z-index:1;font-weight:800;font-size:22px}
+
+.timeline{position:relative;border-left:2px dashed #1e3a5f;margin-left:10px;padding-left:14px}
+.slot{position:relative;margin:14px 0}
+.slot::before{content:"";position:absolute;left:-18px;top:6px;width:10px;height:10px;border-radius:50%;background:#0ea5e9;box-shadow:0 0 0 3px #0ea5e933}
+
+.calendar{margin-top:10px;background:#0a1426;border:1px solid #1e293b;border-radius:16px;overflow:hidden}
+.cal-head{display:grid;grid-template-columns:80px repeat(7,1fr);background:#0b1d31;border-bottom:1px solid #1e293b;font-size:12px}
+.cal-head div{padding:8px;text-align:center;color:var(--muted)}
+.cal-body{position:relative;height:560px;overflow:auto}
+.hour{position:absolute;left:0;right:0;height:40px;border-top:1px dashed #13233d;display:flex}
+.hour span{width:80px;padding:2px 6px;font-size:11px;color:#5b708f}
+.hour div{flex:1}
+.evt{position:absolute;left:86px;right:8px;height:34px;border-radius:10px;padding:6px 8px;background:linear-gradient(135deg,#0ea5e9,#22d3ee);color:#002132;font-weight:700;font-size:12px;cursor:grab;box-shadow:0 6px 14px #0005;user-select:none;touch-action:none}
+.evt:active{cursor:grabbing}
+
+.scanner video{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:16px;background:#000;border:1px solid #1e293b}
+.scanbar{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+
+nav{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;justify-content:space-around;gap:6px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));background:rgba(2,6,23,.85);backdrop-filter:blur(12px);border-top:1px solid #1e293b}
+nav button{flex:1;max-width:110px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 6px;border:none;background:transparent;color:#7a8aa6;font-size:11px;border-radius:12px}
+nav button.active{color:#7dd3fc;background:#0b2236}
+nav svg{width:22px;height:22px}
+
+.toast{position:fixed;left:50%;bottom:86px;transform:translateX(-50%);background:#0b1d31;border:1px solid #1e3a5f;padding:10px 14px;border-radius:12px;display:none;z-index:70}
+.toast.show{display:block}
 </style>
 </head>
 <body>
-<div id="app">
-<header class="header">
+<header>
   <div class="brand">
-    <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div>
-    struktiva <pill>v9.7</pill>
+    <div class="logo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+    </div>
+    <div>strukt<span style="color:#7dd3fc">iva</span> <small class="muted">v9.8</small></div>
   </div>
-  <div class="user" id="userBtn" title="Name ändern">
-    <span>Angemeldet: <b id="userName">–</b></span>
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 0 1 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+  <div class="userbox">
+    <small>Hallo</small>
+    <strong id="hdrName">Gast</strong>
   </div>
 </header>
 
-<div class="layout">
-  <aside class="sidebar">
-    <nav class="nav" id="nav">
-      <button data-nav="dashboard" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M9 22V12h6v10"/></svg> Dashboard</button>
-      <button data-nav="meds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></svg> Medikamente</button>
-      <button data-nav="scan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h3M20 7V4h-3M4 17v3h3M20 17v3h-3"/><rect x="7" y="7" width="10" height="10" rx="2"/></svg> Scanner</button>
-      <button data-nav="calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Kalender</button>
-      <button data-nav="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 0 0 0 .33-1.82 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.01a1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09c0 .66.39 1.26 1 1.51.6.25 1.3.18 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 0 0 0-.33 1.82v.01c.25.6.85 1 1.51 1H21a2 2 0 1 1 0 4h-.09c-.66 0-1.26.39-1.51 1z"/></svg> Einstellungen</button>
-    </nav>
-  </aside>
-
-  <main>
-    <section id="view-dashboard" class="view active">
-      <div class="grid cols-4">
-        <div class="card kpi"><div><h3>Nächste Einnahme</h3><div class="value" id="kpi-next">–</div><div class="sub" id="kpi-next-sub">–</div></div><span class="badge ok">heute</span></div>
-        <div class="card kpi"><div><h3>Heute erledigt</h3><div class="value" id="kpi-done">0/0</div><div class="sub">Adhärenz heute</div></div><span class="badge">live</span></div>
-        <div class="card kpi"><div><h3>Bestand kritisch</h3><div class="value" id="kpi-stock">0</div><div class="sub">Medikamente &lt; 7 Tage</div></div><span class="badge warn">prüfen</span></div>
-        <div class="card kpi"><div><h3>Woche</h3><div class="value" id="kpi-week">–%</div><div class="sub">Einnahmetreue</div></div><span class="badge ok">Ziel 95%</span></div>
-      </div>
-
-      <div class="grid cols-2" style="margin-top:14px">
-        <div class="card">
-          <h3>Aktive Medikamente</h3>
-          <div class="list" id="dash-meds"></div>
-        </div>
-        <div class="card">
-          <h3>Heute</h3>
-          <div class="list" id="dash-today"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="view-meds" class="view">
-      <div class="toolbar">
-        <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input id="medSearch" class="input" placeholder="Suche in 600+ Medikamenten (z.B. Prasugrel)"></div>
-        <button class="btn primary" id="btnAddMed"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg> Hinzufügen</button>
-      </div>
-      <div class="grid cols-2">
-        <div class="card">
-          <h3>Datenbank (600+)</h3>
-          <div class="list" id="dbList"></div>
-        </div>
-        <div class="card">
-          <h3>Meine Medikation</h3>
-          <div class="list" id="myMeds"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="view-scan" class="view">
-      <div class="card">
-        <div class="row" style="justify-content:space-between;align-items:center;margin-bottom:10px">
-          <h3 style="margin:0">PZN & eRezept Scanner</h3>
-          <div class="tabs" id="scanTabs">
-            <button data-tab="pzn" class="active">PZN Barcode</button>
-            <button data-tab="qr">eRezept QR</button>
-          </div>
-        <div class="scanner">
-          <video id="video" autoplay playsinline muted></video>
-          <div class="scan-overlay"></div>
-        </div>
-        <div class="row wrap" style="margin-top:12px">
-          <button class="btn primary" id="btnStartCam"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> Kamera starten</button>
-          <button class="btn" id="btnStopCam">Stoppen</button>
-          <input id="manualCode" class="input" placeholder="PZN oder Code manuell" style="max-width:260px">
-          <button class="btn" id="btnManual">Prüfen</button>
-        </div>
-        <hr>
-        <div id="scanResult" class="sub">Bereit zum Scannen.</div>
-      </div>
-    </section>
-
-    <section id="view-calendar" class="view">
-      <div class="card">
-        <div class="calendar-toolbar">
-          <div class="row">
-            <button class="btn small" id="calPrev">‹</button>
-            <div class="badge" id="calTitle">Heute</div>
-            <button class="btn small" id="calNext">›</button>
-          </div>
-          <div class="tabs">
-            <button data-cal="day" class="active" id="tabDay">Tag</button>
-            <button data-cal="week" id="tabWeek">Woche</button>
-          </div>
-        </div>
-        <div id="calDay" class="cal-grid">
-          <div class="cal-times" id="calTimes"></div>
-          <div style="position:relative"><div class="cal-slot" id="calSlot"></div></div>
-        </div>
-        <div id="calWeek" class="cal-week" style="display:none">
-          <div class="cal-times" id="calTimesW"></div>
-        </div>
-        <div class="sub" style="margin-top:8px">Tipp: Einnahmen per Drag & Drop verschieben.</div>
-      </div>
-    </section>
-
-    <section id="view-settings" class="view">
-      <div class="grid cols-2">
-        <div class="card">
-          <h3>Profil</h3>
-          <label class="sub">Angemeldet als</label>
-          <div class="row" style="margin-top:6px">
-            <input id="inpName" class="input" placeholder="Name">
-            <button class="btn" id="saveName">Speichern</button>
-          </div>
-          <hr>
-          <h3>Klingelton</h3>
-          <select id="selTone" class="input">
-            <option value="klassisch">klassisch</option>
-            <option value="sanft">sanft</option>
-            <option value="dringend">dringend</option>
-            <option value="piep">piep</option>
-            <option value="melodie">melodie</option>
-          </select>
-          <div class="row" style="margin-top:8px">
-            <button class="btn" id="testTone">Test abspielen</button>
-            <span class="sub">Web Audio, offline</span>
-          </div>
-        <div class="card">
-          <h3>Benachrichtigungen</h3>
-          <div class="row" style="justify-content:space-between">
-            <span>Push aktivieren</span>
-            <div class="switch" id="swNotify"><span></span></div>
-          </div>
-          <div class="sub">Erinnerungen funktionieren offline, wenn installiert.</div>
-          <hr>
-          <h3>Installation</h3>
-          <button class="btn primary" id="btnInstall" disabled><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> App installieren</button>
-          <div class="sub" id="installHint" style="margin-top:6px">Wird verfügbar, wenn Browser Installation erlaubt.</div>
-          <hr>
-          <h3>Daten</h3>
-          <div class="row wrap">
-            <button class="btn" id="exportData">Export JSON</button>
-            <label class="btn"><input type="file" id="importData" accept="application/json" hidden>Import JSON</label>
-            <button class="btn" id="clearData" style="color:#fda4af;border-color:#7f1d1d">Alles löschen</button>
-          </div>
-        </div>
-      <div class="footer">struktiva v9.7 • PWA • Offline • Deutsch</div>
-    </section>
-  </main>
+<div id="installBanner" class="install">
+  <div class="row"><span class="pill">📲 Installieren</span><div><b>struktiva</b> als App installieren</div></div>
+  <button id="btnInstall" class="btn small acc">Installieren</button>
 </div>
 
-<nav class="tabbar" id="tabbar">
-  <button data-nav="dashboard" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M9 22V12h6v10"/></svg>Home</button>
-  <button data-nav="meds"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></svg>Medis</button>
-  <button data-nav="scan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h3M20 7V4h-3M4 17v3h3M20 17v3h-3"/><rect x="7" y="7" width="10" height="10" rx="2"/></svg>Scan</button>
-  <button data-nav="calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Plan</button>
-  <button data-nav="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 0 0 0-1.82-.33 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.01a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09c0 .66.39 1.26 1 1.51.6.25 1.3.18 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.01c.25.6.85 1 1.51 1H21a2 2 0 1 1 0 4h-.09c-.66 0-1.26.39-1.51 1z"/></svg>Mehr</button>
+<main>
+  <!-- DASHBOARD -->
+  <section id="view-dashboard" class="view active">
+    <div class="grid cols-3">
+      <div class="card">
+        <h3>Adhärenz (7 Tage)</h3>
+        <div class="row">
+          <div class="ring" id="adhRing" style="--p:0"><span id="adhPct">0%</span></div>
+          <div>
+            <div><b id="adhTaken">0</b> von <b id="adhPlan">0</b> eingenommen</div>
+            <div class="muted" style="margin-top:6px">Ziel: ≥ 90% • struktiva berechnet automatisch</div>
+            <div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">
+              <span class="pill">💊 heute: <b id="todayCount">0</b></span>
+              <span class="pill">⏰ nächste: <b id="nextTime">–</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Heute</h3>
+        <div id="todayList" class="list" style="max-height:220px"></div>
+        <div class="spread" style="margin-top:8px">
+          <small class="muted">Tippen zum Abhaken</small>
+          <button class="btn small" onclick="quickAdd()">+ Einnahme</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Schnellaktionen</h3>
+        <div class="grid">
+          <button class="btn" onclick="go('scanner')">📷 eRezept / PZN scannen</button>
+          <button class="btn" onclick="go('meds')">🔍 Medikament suchen (600+)</button>
+          <button class="btn" onclick="testAlarm()">🔔 Alarm testen</button>
+          <div class="row" style="gap:8px">
+            <span class="kbd">offline-first</span><span class="kbd">PWA</span><span class="kbd">DE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h3>Nächste 48 Stunden – Timeline</h3>
+      <div id="timeline" class="timeline"></div>
+    </div>
+  </section>
+
+  <!-- MEDIKAMENTE -->
+  <section id="view-meds" class="view">
+    <div class="card">
+      <div class="spread">
+        <h3>Medikamentendatenbank (600+)</h3>
+        <span class="pill">struktiva DB • lokal</span>
+      </div>
+      <div class="row" style="margin-top:6px">
+        <input id="medSearch" placeholder="Suche Name, Wirkstoff oder PZN…" oninput="renderMeds()">
+        <select id="medFilter" onchange="renderMeds()" style="max-width:160px">
+          <option value="">Alle</option>
+          <option value="Tbl">Tabletten</option>
+          <option value="Kps">Kapseln</option>
+          <option value="FTA">Filmtabletten</option>
+        </select>
+      </div>
+      <div id="medList" class="list" style="margin-top:10px;max-height:60vh"></div>
+    </div>
+
+    <div class="card">
+      <h3>Meine Medikamente</h3>
+      <div id="myMeds" class="list"></div>
+    </div>
+  </section>
+
+  <!-- KALENDER -->
+  <section id="view-kalender" class="view">
+    <div class="card">
+      <div class="spread">
+        <h3>Drag-Kalender</h3>
+        <div class="row">
+          <button class="btn small" onclick="addPlan()">+ Plan</button>
+          <button class="btn small ghost" onclick="clearPlans()">Leeren</button>
+        </div>
+      <small class="muted">Ziehe einen Termin zum Verschieben. Tippen zum Bearbeiten.</small>
+      <div class="calendar">
+        <div class="cal-head">
+          <div>Zeit</div><div>Mo</div><div>Di</div><div>Mi</div><div>Do</div><div>Fr</div><div>Sa</div><div>So</div>
+        </div>
+        <div class="cal-body" id="calBody"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCANNER -->
+  <section id="view-scanner" class="view">
+    <div class="card">
+      <h3>QR eRezept & PZN Barcode Scanner</h3>
+      <div class="scanbar">
+        <select id="camSelect" title="Kamera wählen"></select>
+        <button class="btn small" id="btnStartCam">Start</button>
+        <button class="btn small ghost" id="btnStopCam">Stopp</button>
+        <span class="pill">stabil • Kameraauswahl • offline</span>
+      </div>
+      <div class="scanner" style="margin-top:8px">
+        <video id="video" playsinline muted></video>
+        <canvas id="canvas" hidden></canvas>
+      </div>
+      <div id="scanResult" class="card" style="margin-top:10px;display:none"></div>
+      <small class="muted">Unterstützt: deutsches eRezept (QR/DataMatrix), PZN als EAN-13/Code-128. Nutzt native BarcodeDetector (ohne CDN).</small>
+    </div>
+  </section>
+
+  <!-- EINSTELLUNGEN -->
+  <section id="view-settings" class="view">
+    <div class="grid cols-2">
+      <div class="card">
+        <h3>Kunde</h3>
+        <label>Kundenname (oben im Header sichtbar)</label>
+        <input id="inpName" placeholder="z. B. Praxis Dr. Müller" oninput="saveName(this.value)">
+        <div style="margin-top:10px" class="spread">
+          <small class="muted">Wird lokal gespeichert (localStorage).</small>
+          <button class="btn small" onclick="exportData()">Export</button>
+        </div>
+        <div style="margin-top:8px">
+          <input type="file" id="importFile" accept="application/json" hidden onchange="importData(event)">
+          <button class="btn small ghost" onclick="document.getElementById('importFile').click()">Import</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Klingeltöne (5) – für gesperrten Bildschirm optimiert</h3>
+        <div class="list" id="toneList"></div>
+        <small class="muted">struktiva nutzt Web Audio + System-Benachrichtigung mit Vibration. Bei gesperrtem Bildschirm: starke Vibration + Benachrichtigung zuverlässig, Ton wenn vom System erlaubt.</small>
+      </div>
+
+      <div class="card">
+        <h3>Benachrichtigungen</h3>
+        <div class="row">
+          <button class="btn acc" onclick="enableNotifications()">Aktivieren</button>
+          <button class="btn" onclick="scheduleTest()">Push-Test in 5s</button>
+        </div>
+        <div style="margin-top:8px"><small id="notifState" class="muted">Status unbekannt</small></div>
+      </div>
+
+      <div class="card">
+        <h3>Über struktiva v9.8</h3>
+        <p class="muted">Verbesserungen gegenüber v9.7: echtes Web Manifest für Install-Prompt, Kundename persistent oben, 5 eigene Klingeltöne, verbesserter QR/PZN-Scanner mit Kameraauswahl, 600+ Arzneimittel lokal, Dashboard mit Adhärenz, Drag-Kalender, Push mit Service Worker, komplett offline-first, alles inline ohne CDN.</p>
+        <div class="row" style="flex-wrap:wrap">
+          <span class="kbd">PWA</span><span class="kbd">DE</span><span class="kbd">DSGVO-freundlich</span><span class="kbd">100% lokal</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<nav>
+  <button class="active" data-go="dashboard" onclick="go('dashboard')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2 4 4 8-8 4 4"/></svg>
+    Dashboard
+  </button>
+  <button data-go="meds" onclick="go('meds')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg>
+    Meds
+  </button>
+  <button data-go="kalender" onclick="go('kalender')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+    Kalender
+  </button>
+  <button data-go="scanner" onclick="go('scanner')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h3M20 7V4h-3M4 17v3h3M20 17v3h-3"/><rect x="7" y="7" width="10" height="10" rx="2"/></svg>
+    Scanner
+  </button>
+  <button data-go="settings" onclick="go('settings')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 0 0 0 5 15.4a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09c0 .66.39 1.26 1 1.51.61.25 1.3.16 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06c-.49.52-.58 1.21-.33 1.82.25.61.85 1 1.51 1H21a2 2 0 1 1 0 4h-.09c-.66 0-1.26.39-1.51 1z"/></svg>
+    Mehr
+  </button>
 </nav>
-</div>
 
-<div class="toast" id="toast"></div>
+<div id="toast" class="toast"></div>
 
 <script>
 (() => {
-  const $ = s => document.querySelector(s);
-  const $$ = s => document.querySelectorAll(s);
-  const toast = (m)=>{const t=$('#toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)};
+const $ = s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const store={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}},set(k,v){localStorage.setItem(k,JSON.stringify(v))}};
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)};
 
-  const store = {
-    get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}},
-    set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))
-  };
-  const state = {
-    user: store.get('s_user',{name:'Max Mustermann'}),
-    meds: store.get('s_meds',[]),
-    intake: store.get('s_intake',[]),
-    settings: store.get('s_settings',{tone:'klassisch',notify:false})
-  };
-  const save = ()=>{store.set('s_user',state.user);store.set('s_meds',state.meds);store.set('s_intake',state.intake);store.set('s_settings',state.settings)};
+// --- Name im Header ---
+const hdrName=$('#hdrName');
+function loadName(){const n=store.get('struktiva_kunde','');hdrName.textContent=n||'Gast';$('#inpName').value=n}
+function saveName(v){store.set('struktiva_kunde',v.trim());hdrName.textContent=v.trim()||'Gast'}
 
-  const renderUser=()=>{ $('#userName').textContent=state.user.name; $('#inpName').value=state.user.name };
-  renderUser();
-  $('#userBtn').onclick=()=>{const n=prompt('Name ändern:',state.user.name); if(n){state.user.name=n.trim()||state.user.name; save(); renderUser(); toast('Gespeichert')}};
-  $('#saveName').onclick=()=>{state.user.name=$('#inpName').value.trim()||state.user.name; save(); renderUser(); toast('Profil aktualisiert')};
+// --- Navigation ---
+window.go=id=>{ $$('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+id)); $$('nav button').forEach(b=>b.classList.toggle('active',b.dataset.go===id)); if(id==='meds')renderMeds(); if(id==='kalender')renderCalendar(); if(id==='dashboard')renderDashboard()};
 
-  function showView(v){
-    $$('.view').forEach(x=>x.classList.toggle('active',x.id==='view-'+v));
-    $$('[data-nav]').forEach(b=>b.classList.toggle('active',b.dataset.nav===v));
-    if(v!=='scan') stopCam();
-    if(v==='calendar') renderCalendar();
-    if(v==='dashboard') renderDash();
-    if(v==='meds'){renderDB(); renderMyMeds()}
-    window.scrollTo({top:0,behavior:'smooth'})
-  }
-  $$('[data-nav]').forEach(b=>b.onclick=()=>showView(b.dataset.nav));
+// --- Install Prompt ---
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;$('#installBanner').classList.add('show')});
+$('#btnInstall').onclick=async()=>{if(!deferredPrompt) return; deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt=null; $('#installBanner').classList.remove('show')};
 
-  // ---- 600+ Medikamente inkl. Prasugrel ----
-  const core = [
-    ["Prasugrel 10mg","Prasugrel","16720012","Filmtablette"],
-    ["Efient 10mg","Prasugrel","08765432","Filmtablette"],
-    ["Prasugrel AbZ 5mg","Prasugrel","10001235","Tablette"],
-    ["Ramipril 5mg","Ramipril","02526354","Tablette"],
-    ["Ramipril 10mg","Ramipril","02526355","Tablette"],
-    ["Metformin 1000mg","Metformin","06345321","Filmtablette"],
-    ["Metformin 850mg","Metformin","06345320","Filmtablette"],
-    ["Atorvastatin 20mg","Atorvastatin","04829110","Filmtablette"],
-    ["Atorvastatin 40mg","Atorvastatin","04829120","Filmtablette"],
-    ["Simvastatin 20mg","Simvastatin","03214560","Tablette"],
-    ["Pantoprazol 40mg","Pantoprazol","05872140","magensaftres"],
-    ["Pantoprazol 20mg","Pantoprazol","05872130","magensaftres"],
-    ["Omeprazol 20mg","Omeprazol","04122340","Kapsel"],
-    ["Ibuprofen 400mg","Ibuprofen","02456890","Filmtablette"],
-    ["Ibuprofen 600mg","Ibuprofen","02456900","Filmtablette"],
-    ["Ibuprofen 800mg","Ibuprofen","02456910","Retard"],
-    ["Paracetamol 500mg","Paracetamol","01837450","Tablette"],
-    ["Paracetamol 1000mg","Paracetamol","01837460","Tablette"],
-    ["ASS 100mg","Acetylsalicylsäure","02145670","Tablette"],
-    ["Clopidogrel 75mg","Clopidogrel","07543210","Filmtablette"],
-    ["Ticagrelor 90mg","Ticagrelor","09876540","Filmtablette"],
-    ["Apixaban 5mg","Apixaban","10987650","Filmtablette"],
-    ["Rivaroxaban 20mg","Rivaroxaban","11223344","Filmtablette"],
-    ["Marcumar 3mg","Phenprocoumon","00987654","Tablette"],
-    ["L-Thyroxin 75µg","Levothyroxin","03456780","Tablette"],
-    ["L-Thyroxin 100µg","Levothyroxin","03456790","Tablette"],
-    ["L-Thyroxin 125µg","Levothyroxin","03456800","Tablette"],
-    ["Amlodipin 5mg","Amlodipin","04567890","Tablette"],
-    ["Amlodipin 10mg","Amlodipin","04567900","Tablette"],
-    ["Bisoprolol 5mg","Bisoprolol","05678900","Filmtablette"],
-    ["Bisoprolol 2,5mg","Bisoprolol","05678890","Filmtablette"],
-    ["Metoprolol 47,5mg","Metoprolol","06789010","Retard"],
-    ["Candesartan 8mg","Candesartan","07890120","Tablette"],
-    ["Valsartan 160mg","Valsartan","08901230","Filmtablette"],
-    ["Torasemid 10mg","Torasemid","10123450","Tablette"],
-    ["Furosemid 40mg","Furosemid","10234560","Tablette"],
-    ["HCT 25mg","Hydrochlorothiazid","10345670","Tablette"],
-    ["Allopurinol 300mg","Allopurinol","10456780","Tablette"],
-    ["Novaminsulfon 500mg","Metamizol","10567890","Tablette"],
-    ["Tilidin 100/8mg","Tilidin/Naloxon","10678900","Retard"],
-    ["Tramadol 100mg","Tramadol","10789010","Retard"],
-    ["Pregabalin 75mg","Pregabalin","10890120","Kapsel"],
-    ["Gabapentin 300mg","Gabapentin","10901230","Kapsel"],
-    ["Sertralin 50mg","Sertralin","11012340","Filmtablette"],
-    ["Citalopram 20mg","Citalopram","11123450","Filmtablette"],
-    ["Venlafaxin 75mg","Venlafaxin","11234560","Retardkapsel"],
-    ["Mirtazapin 15mg","Mirtazapin","11345670","Schmelz"],
-    ["Doxycyclin 100mg","Doxycyclin","11456780","Tablette"],
-    ["Amoxicillin 1000mg","Amoxicillin","11567890","Filmtablette"],
-    ["Azithromycin 500mg","Azithromycin","11678900","Filmtablette"]
-  ];
-  const MED_DB = core.map((c,i)=>({id:'db'+i,name:c[0],wirkstoff:c[1],pzn:c[2],form:c[3]}));
-  const forms=["Tablette","Filmtablette","Kapsel","Retard","Tropfen","Saft"];
-  const baseNames=["Amlodipin","Candesartan","Ibuprofen","Metoprolol","Simvastatin","Pantoprazol","Omeprazol","Levothyroxin","Ramipril","Atorvastatin","Metformin","Bisoprolol","Tamsulosin","Finasterid","Montelukast","Cetirizin","Loratadin","Prednisolon","Hydrocortison","Salbutamol","Formoterol","Tiotropium","Losartan","Valsartan","Enalapril","Spironolacton","Diazepam","Lorazepam","Zopiclon","Melatonin"];
-  for(let i=MED_DB.length;i<625;i++){
-    const base = baseNames[i%baseNames.length];
-    const mg = 5+((i*7)%495);
-    const n = `${base} ${mg}mg`;
-    const p = (20000000+i).toString().padStart(8,'0');
-    MED_DB.push({id:'db'+i,name:n,wirkstoff:base,pzn:p,form:forms[i%forms.length]})
-  }
+// --- 600+ Medikamenten-DB (lokal generiert) ---
+const BASE=[["Ibuprofen","Ibuprofen","ratiopharm",["200","400","600","800"]],["Paracetamol","Paracetamol","1A Pharma",["500","1000"]],["Diclofenac","Diclofenac","Hexal",["25","50","75"]],["Metamizol","Metamizol","Novaminsulfon",["500"]],["ASS","Acetylsalicylsäure","Bayer",["100"]],["Pantoprazol","Pantoprazol","Takeda",["20","40"]],["Omeprazol","Omeprazol","AbZ",["10","20","40"]],["Metformin","Metformin","Merck",["500","850","1000"]],["Ramipril","Ramipril","ratiopharm",["2.5","5","10"]],["Bisoprolol","Bisoprolol","Hexal",["2.5","5","10"]],["Amlodipin","Amlodipin","1A",["5","10"]],["Simvastatin","Simvastatin","Basics",["20","40"]],["Atorvastatin","Atorvastatin","Pfizer",["10","20","40","80"]],["Levothyroxin","Levothyroxin","Henning",["25","50","75","100","125","150"]],["Metoprolol","Metoprolol","Astra",["47.5","95"]],["Candesartan","Candesartan","Takeda",["4","8","16","32"]],["Lisinopril","Lisinopril","ratiopharm",["5","10","20"]],["Enalapril","Enalapril","Hexal",["5","10","20"]],["Torasemid","Torasemid","Berlin",["5","10"]],["Furosemid","Furosemid","ratiopharm",["40"]],["HCT","Hydrochlorothiazid","AbZ",["12.5","25"]],["Allopurinol","Allopurinol","Aliud",["100","300"]],["Prednisolon","Prednisolon","GALEN",["5","20","50"]],["Loratadin","Loratadin","ratiopharm",["10"]],["Cetirizin","Cetirizin","Hexal",["10"]],["Desloratadin","Desloratadin","Auro",["5"]],["Ambroxol","Ambroxol","Mucosolvan",["30","75"]],["ACC","Acetylcystein","Hexal",["100","200","600"]],["Amoxicillin","Amoxicillin","1A",["500","1000"]],["Ciprofloxacin","Ciprofloxacin","Fresenius",["250","500"]],["Azithromycin","Azithromycin","Pfizer",["250","500"]],["Doxycyclin","Doxycyclin","ratiopharm",["100"]],["Tilidin","Tilidin/Naloxon","Winthrop",["50/4","100/8"]],["Tramadol","Tramadol","Grünenthal",["50","100"]],["Oxycodon","Oxycodon","Mundipharma",["5","10","20"]],["Fentanyl","Fentanyl","Janssen",["12","25","50"]],["Gabapentin","Gabapentin","Neurontin",["300","600"]],["Pregabalin","Pregabalin","Lyrica",["75","150","300"]],["Amitriptylin","Amitriptylin","Neurax",["10","25"]],["Citalopram","Citalopram","Hexal",["10","20","40"]],["Sertralin","Sertralin","Pfizer",["50","100"]],["Venlafaxin","Venlafaxin","Trevilor",["37.5","75","150"]],["Mirtazapin","Mirtazapin","Remergil",["15","30","45"]],["Quetiapin","Quetiapin","Seroquel",["25","100","200"]],["Risperidon","Risperidon","Janssen",["1","2"]],["Melatonin","Melatonin","Circadin",["2"]],["Zopiclon","Zopiclon","Winthrop",["3.75","7.5"]],["Zolpidem","Zolpidem","Stilnox",["10"]],["Lorazepam","Lorazepam","Tavor",["0.5","1","2.5"]],["Diazepam","Diazepam","Valium",["5","10"]],["Tamsulosin","Tamsulosin","Astellas",["0.4"]],["Finasterid","Finasterid","Proscar",["5"]],["Sitagliptin","Sitagliptin","Januvia",["100"]],["Empagliflozin","Empagliflozin","Jardiance",["10","25"]],["Insulin","Insulin glargin","Lantus",["100IE"]],["Ibuprofen Lysin","Ibuprofen","Ibu-Lysin",["684"]],["Naproxen","Naproxen","Aleve",["220","500"]],["Etoricoxib","Etoricoxib","Arcoxia",["60","90"]],["Moxonidin","Moxonidin","1A",["0.2","0.3","0.4"]]];
+let pzn=10000000; const MEDS=[];
+BASE.forEach(([n,w,h,dosen])=>{dosen.forEach(d=>{["Tbl","Kps","FTA"].forEach(f=>{[20,50,100].forEach(pack=>{if(MEDS.length>=640)return;MEDS.push({pzn:String(pzn++).padStart(8,'0'),name:`${n} ${d} mg ${h}`,wirk:w,dosis:d+" mg",form:f,pack,hersteller:h})})})})});
 
-  const dbList = $('#dbList');
-  function renderDB(){
-    const q = ($('#medSearch').value||'').toLowerCase();
-    const items = MED_DB.filter(m=>!q||m.name.toLowerCase().includes(q)||m.wirkstoff.toLowerCase().includes(q)||m.pzn.includes(q)).slice(0,120);
-    dbList.innerHTML = items.map(m=>`
-      <div class="item">
-        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></svg></div>
-        <div class="meta"><b>${m.name}</b><span>PZN ${m.pzn} • ${m.wirkstoff} • ${m.form}</span></div>
-        <button class="btn small" data-add="${m.id}">Übernehmen</button>
-      </div>`).join('') || `<div class="sub">Keine Treffer</div>`;
-    dbList.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>addFromDB(b.dataset.add));
-  }
-  $('#medSearch').oninput=renderDB;
+// --- Meine Meds / Plan / Logs ---
+const myMeds=()=>store.get('struktiva_my',[]);
+const saveMy=v=>store.set('struktiva_my',v);
+const plans=()=>store.get('struktiva_plans',[]);
+const savePlans=v=>store.set('struktiva_plans',v);
+const logs=()=>store.get('struktiva_logs',[]);
+const saveLogs=v=>store.set('struktiva_logs',v);
 
-  function addFromDB(id){
-    const m = MED_DB.find(x=>x.id===id); if(!m) return;
-    const dosis = prompt(`Dosierung für ${m.name} (z.B. 1-0-1):`,"1-0-0");
-    if(dosis===null) return;
-    const times = prompt(`Uhrzeiten Komma-getrennt (24h):`, "08:00,20:00");
-    const t = (times||"08:00").split(',').map(s=>s.trim()).filter(Boolean);
-    const med = {id:'m'+Date.now(),name:m.name,wirkstoff:m.wirkstoff,pzn:m.pzn,form:m.form,dosis,times:t,start:new Date().toISOString().slice(0,10),bestand:30};
-    state.meds.push(med);
-    for(let d=0; d<14; d++){
-      const day = new Date(); day.setDate(day.getDate()+d);
-      t.forEach(tm=>{
-        const [h,mi]=tm.split(':').map(Number);
-        const dt = new Date(day); dt.setHours(h,mi||0,0,0);
-        if(dt> new Date(Date.now()-60000)) state.intake.push({id:'i'+Math.random().toString(36).slice(2),medId:med.id,datetime:dt.toISOString(),taken:false});
-      })
-    }
-    save(); renderMyMeds(); renderDash(); toast('Medikament hinzugefügt');
-  }
+function renderMeds(){const q=$('#medSearch').value.toLowerCase().trim(), f=$('#medFilter').value; const list=$('#medList'); const mine=new Set(myMeds().map(m=>m.pzn));
+ const res=MEDS.filter(m=>!f||m.form===f).filter(m=>!q||m.name.toLowerCase().includes(q)||m.wirk.toLowerCase().includes(q)||m.pzn.includes(q)).slice(0,120);
+ list.innerHTML=res.map(m=>`<div class="item"><div class="icon">💊</div><div class="meta"><b>${m.name}</b><small>PZN ${m.pzn} • ${m.wirk} • ${m.form} ${m.pack}St</small></div><button class="btn small ${mine.has(m.pzn)?'ghost':''}" onclick="toggleMine('${m.pzn}')">${mine.has(m.pzn)?'Entfernen':'Hinzufügen'}</button></div>`).join('')||'<div class="muted">Keine Treffer</div>';
+ const my=$('#myMeds'); const own=myMeds(); my.innerHTML=own.length? own.map(m=>`<div class="item"><div class="icon">✔️</div><div class="meta"><b>${m.name}</b><small>${m.pzn}</small></div><button class="btn small" onclick="addPlanFor('${m.pzn}')">Planen</button></div>`).join(''):'<div class="muted">Noch keine Medikamente hinzugefügt.</div>';
+}
+window.toggleMine=pzn=>{const m=MEDS.find(x=>x.pzn===pzn);let arr=myMeds();if(arr.find(x=>x.pzn===pzn)){arr=arr.filter(x=>x.pzn!==pzn)}else{arr.push(m)} saveMy(arr); renderMeds(); renderDashboard();};
+window.addPlanFor=pzn=>{const t=prompt('Uhrzeit HH:MM (z.B. 08:00)'); if(!t) return; const p=plans(); p.push({id:crypto.randomUUID(),pzn,time:t,days:[1,2,3,4,5,6,0]}); savePlans(p); toast('Plan gespeichert'); go('kalender')};
 
-  function renderMyMeds(){
-    const el = $('#myMeds');
-    if(!state.meds.length){el.innerHTML=`<div class="sub">Noch keine Medikamente. Über Datenbank hinzufügen oder per Scanner.</div>`;return}
-    el.innerHTML = state.meds.map(m=>`
-      <div class="item">
-        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4.5L5.5 20l2-7L2 9h7z"/></svg></div>
-        <div class="meta"><b>${m.name}</b><span>${m.dosis||'-'} • ${m.times.join(', ')} • Bestand ${m.bestand} Tbl</span></div>
-        <button class="btn small" data-del="${m.id}">Entf.</button>
-      </div>`).join('');
-    el.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{state.meds=state.meds.filter(x=>x.id!==b.dataset.del);state.intake=state.intake.filter(i=>i.medId!==b.dataset.del);save();renderMyMeds();renderDash()});
-  }
-  $('#btnAddMed').onclick=()=>{
-    const name = prompt('Medikamentenname:'); if(!name) return;
-    const med = {id:'m'+Date.now(),name,wirkstoff:'',pzn:'',form:'',dosis:'1-0-0',times:['08:00'],start:new Date().toISOString().slice(0,10),bestand:30};
-    state.meds.push(med);
-    state.intake.push({id:'i'+Date.now(),medId:med.id,datetime:new Date().toISOString(),taken:false});
-    save(); renderMyMeds(); renderDash(); toast('Erstellt');
-  };
+// --- Dashboard / Adhärenz ---
+function renderDashboard(){const now=new Date(); const today=now.toISOString().slice(0,10); const todays=expandPlans(48).filter(e=>e.date===today); $('#todayCount').textContent=todays.length; $('#nextTime').textContent=todays.find(e=>!logs().some(l=>l.planId===e.id && l.date===today))?.time||'–';
+ const list=$('#todayList'); const takenSet=new Set(logs().filter(l=>l.date===today&&l.taken).map(l=>l.planId));
+ list.innerHTML=todays.map(e=>{const m=MEDS.find(x=>x.pzn===e.pzn);const done=takenSet.has(e.id);return `<div class="item" onclick="toggleTake('${e.id}')"><div class="icon">${done?'✅':'⏰'}</div><div class="meta"><b>${m?.name||e.pzn}</b><small>${e.time} • ${done?'eingenommen':'offen'}</small></div><span class="kbd">${done?'rückgängig':'abhaken'}</span></div>`}).join('')||'<div class="muted">Keine Einnahmen heute.</div>';
+ // adherence 7d
+ const from=new Date(now); from.setDate(from.getDate()-6); let planCnt=0,taken=0; for(let d=new Date(from); d<=now; d.setDate(d.getDate()+1)){const day=expandPlans(24*10).filter(e=>e.date===d.toISOString().slice(0,10)); planCnt+=day.length; day.forEach(e=>{if(logs().some(l=>l.planId===e.id&&l.date===e.date&&l.taken)) taken++})}
+ const pct=planCnt?Math.round(taken/planCnt*100):0; $('#adhPct').textContent=pct+'%'; $('#adhRing').style.setProperty('--p',pct); $('#adhTaken').textContent=taken; $('#adhPlan').textContent=planCnt;
+ // timeline
+ const tl=$('#timeline'); const next=expandPlans(48).slice(0,12); tl.innerHTML=next.map(e=>{const m=MEDS.find(x=>x.pzn===e.pzn);return `<div class="slot"><b>${e.date} ${e.time}</b> – ${m?.name||e.pzn}</div>`}).join('');
+}
+window.toggleTake=planId=>{const today=new Date().toISOString().slice(0,10); const L=logs(); const i=L.findIndex(l=>l.planId===planId&&l.date===today); if(i>=0){L[i].taken=!L[i].taken}else{L.push({planId,date:today,taken:true,ts:Date.now()})} saveLogs(L); renderDashboard(); if(L[L.length-1]?.taken) triggerHaptic(1) };
+function quickAdd(){const m=myMeds()[0]; if(!m){toast('Erst Medikament hinzufügen'); go('meds'); return} const t=new Date().toTimeString().slice(0,5); const p=plans(); const id=crypto.randomUUID(); p.push({id,pzn:m.pzn,time:t,days:[new Date().getDay()]}); savePlans(p); toggleTake(id)}
 
-  function renderDash(){
-    const now = new Date();
-    const todayStr = now.toISOString().slice(0,10);
-    const todayIntakes = state.intake.filter(i=>i.datetime.slice(0,10)===todayStr);
-    const done = todayIntakes.filter(i=>i.taken).length;
-    $('#kpi-done').textContent = `${done}/${todayIntakes.length||0}`;
-    const next = state.intake.filter(i=>!i.taken && new Date(i.datetime)>now).sort((a,b)=>new Date(a.datetime)-new Date(b.datetime))[0];
-    if(next){const d=new Date(next.datetime); $('#kpi-next').textContent = d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}); const med=state.meds.find(m=>m.id===next.medId); $('#kpi-next-sub').textContent = med?.name||''} else {$('#kpi-next').textContent='–';$('#kpi-next-sub').textContent='Keine offen'}
-    const low = state.meds.filter(m=>(m.bestand||0)<7).length; $('#kpi-stock').textContent = low;
-    const last7 = state.intake.filter(i=>{const dt=new Date(i.datetime); return (now-dt)<7*86400000 && dt<now});
-    const taken7 = last7.filter(i=>i.taken).length; const perc = last7.length? Math.round(taken7/last7.length*100):0; $('#kpi-week').textContent = perc+'%';
-    $('#dash-meds').innerHTML = state.meds.slice(0,5).map(m=>`<div class="item"><div class="meta"><b>${m.name}</b><span>${m.times.join(', ')}</span></div><span class="badge">${m.bestand} Tbl</span></div>`).join('') || `<div class="sub">–</div>`;
-    $('#dash-today').innerHTML = todayIntakes.slice(0,8).map(i=>{const m=state.meds.find(x=>x.id===i.medId); const t=new Date(i.datetime).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}); return `<div class="item"><div class="meta"><b>${t} – ${m?.name||'?'}</b><span>${i.taken?'eingenommen':'offen'}</span></div><button class="btn small" data-take="${i.id}">${i.taken?'✓':'Nehmen'}</button></div>`}).join('') || `<div class="sub">Keine Einträge</div>`;
-    $('#dash-today').querySelectorAll('[data-take]').forEach(b=>b.onclick=()=>{const it=state.intake.find(x=>x.id===b.dataset.take); if(it){it.taken=!it.taken; it.takenAt=new Date().toISOString(); save(); renderDash(); renderCalendar()} });
-  }
+// --- Expand plans next hours ---
+function expandPlans(hours=48){const out=[]; const now=new Date(); const end=new Date(now.getTime()+hours*3600*1000); plans().forEach(p=>{for(let d=new Date(now); d<=end; d.setDate(d.getDate()+1)){if(!p.days.includes(d.getDay())) continue; const [h,m]=p.time.split(':').map(Number); const dt=new Date(d); dt.setHours(h,m,0,0); if(dt>=now && dt<=end){out.push({id:p.id,pzn:p.pzn,time:p.time,date:dt.toISOString().slice(0,10),ts:dt.getTime()})}}}); return out.sort((a,b)=>a.ts-b.ts)}
 
-  // Kalender
-  let calDate = new Date(); let calMode='day';
-  function renderCalendar(){
-    $('#calTitle').textContent = calMode==='day' ? calDate.toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit'}) : `KW ${getKW(calDate)}`;
-    if(calMode==='day'){
-      $('#calDay').style.display=''; $('#calWeek').style.display='none';
-      const times = $('#calTimes'); times.innerHTML=''; for(let h=0;h<24;h++){const d=document.createElement('div');d.textContent=h.toString().padStart(2,'0')+':00';times.appendChild(d)}
-      const slot = $('#calSlot'); slot.innerHTML=''; for(let h=0;h<24;h++){const ln=document.createElement('div');ln.className='cal-hour';ln.style.top=(h*48)+'px';slot.appendChild(ln)}
-      const dayStr = calDate.toISOString().slice(0,10);
-      const items = state.intake.filter(i=>i.datetime.slice(0,10)===dayStr);
-      items.forEach(i=>{
-        const dt=new Date(i.datetime); const top = (dt.getHours()+dt.getMinutes()/60)*48;
-        const med=state.meds.find(m=>m.id===i.medId);
-        const el=document.createElement('div'); el.className='cal-event'; el.draggable=true; el.style.top=(top+2)+'px'; el.style.height='40px';
-        el.innerHTML = `<b>${dt.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})}</b> – ${med?.name||''} <span style="float:right">${i.taken?'✓':''}</span>`;
-        el.ondragstart=e=>{e.dataTransfer.setData('text/plain',i.id)};
-        el.onclick=()=>{i.taken=!i.taken; save(); renderCalendar(); renderDash()};
-        slot.appendChild(el);
-      });
-      slot.ondragover=e=>e.preventDefault();
-      slot.ondrop=e=>{e.preventDefault(); const id=e.dataTransfer.getData('text/plain'); const it=state.intake.find(x=>x.id===id); if(!it) return; const rect=slot.getBoundingClientRect(); const y=e.clientY-rect.top; const mins=Math.max(0,Math.min(23*60+59,Math.round(y/48*60))); const nh=Math.floor(mins/60), nm=mins%60; const newDt=new Date(calDate.getFullYear(),calDate.getMonth(),calDate.getDate(),nh,nm,0,0); it.datetime=newDt.toISOString(); save(); renderCalendar(); toast('Verschoben') };
-    } else {
-      $('#calDay').style.display='none'; $('#calWeek').style.display='';
-      const container = $('#calWeek'); container.querySelectorAll('.cal-col,.week-head').forEach(n=>n.remove());
-      const times = $('#calTimesW'); times.innerHTML=''; for(let h=0;h<24;h++){const d=document.createElement('div');d.textContent=h.toString().padStart(2,'0');d.style.height='48px';d.style.padding='6px 8px';d.style.fontSize='12px';d.style.color='var(--muted)';d.style.borderBottom='1px dashed #1f2a44';times.appendChild(d)}
-      const monday = new Date(calDate); const day = (monday.getDay()+6)%7; monday.setDate(monday.getDate()-day);
-      for(let c=0;c<7;c++){
-        const colDate = new Date(monday); colDate.setDate(monday.getDate()+c);
-        const head=document.createElement('div'); head.className='week-head'; head.style.gridColumn=c+2; head.textContent=colDate.toLocaleDateString('de-DE',{weekday:'short',day:'2-digit'}); container.appendChild(head);
-        const col=document.createElement('div'); col.className='cal-col'; col.style.gridColumn=c+2; col.style.gridRow='2'; col.style.height='1152px'; col.style.position='relative';
-        for(let h=0;h<24;h++){const ln=document.createElement('div');ln.className='cal-hour';ln.style.top=(h*48)+'px';col.appendChild(ln)}
-        const dayStr=colDate.toISOString().slice(0,10);
-        state.intake.filter(i=>i.datetime.slice(0,10)===dayStr).forEach(i=>{
-          const dt=new Date(i.datetime); const top=(dt.getHours()+dt.getMinutes()/60)*48; const med=state.meds.find(m=>m.id===i.medId);
-          const ev=document.createElement('div'); ev.className='cal-event'; ev.style.top=(top+2)+'px'; ev.style.height='36px'; ev.style.fontSize='12px'; ev.innerHTML=`${dt.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})} ${med?.name?.slice(0,12)||''}`;
-          col.appendChild(ev);
-        });
-        container.appendChild(col);
-      }
-    }
-  }
-  function getKW(d){ d=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())); const dayNum=d.getUTCDay()||7; d.setUTCDate(d.getUTCDate()+4-dayNum); const yearStart=new Date(Date.UTC(d.getUTCFullYear(),0,1)); return Math.ceil((((d-yearStart)/86400000)+1)/7) }
-  $('#calPrev').onclick=()=>{calDate.setDate(calDate.getDate()+(calMode==='day'?-1:-7)); renderCalendar()};
-  $('#calNext').onclick=()=>{calDate.setDate(calDate.getDate()+(calMode==='day'?1:7)); renderCalendar()};
-  $('#tabDay').onclick=()=>{calMode='day'; $('#tabDay').classList.add('active'); $('#tabWeek').classList.remove('active'); renderCalendar()};
-  $('#tabWeek').onclick=()=>{calMode='week'; $('#tabWeek').classList.add('active'); $('#tabDay').classList.remove('active'); renderCalendar()};
+// --- Drag Kalender ---
+function renderCalendar(){const body=$('#calBody'); body.innerHTML=''; for(let h=6;h<24;h++){const row=document.createElement('div');row.className='hour';row.style.top=(h-6)*40+'px';row.innerHTML=`<span>${String(h).padStart(2,'0')}:00</span><div></div>`; body.appendChild(row)}
+ const weekStart=(()=>{const d=new Date(); const day=(d.getDay()+6)%7; d.setDate(d.getDate()-day); d.setHours(0,0,0,0); return d})();
+ plans().forEach(p=>{const [h,m]=p.time.split(':').map(Number); p.days.forEach(dow=>{const col=((dow+6)%7); const top=(h-6)*40+(m/60)*40; const el=document.createElement('div'); el.className='evt'; el.draggable=true; el.style.top=top+'px'; el.style.left=`calc(86px + ${col}*((100% - 94px)/7) + 2px)`; el.style.width=`calc((100% - 100px)/7)`; const med=MEDS.find(x=>x.pzn===p.pzn); el.textContent=`${p.time} ${med?med.name.split(' ').slice(0,2).join(' '):p.pzn}`; el.title='Ziehen zum Verschieben'; el.dataset.id=p.id; el.dataset.dow=dow; el.ondragstart=e=>{e.dataTransfer.setData('text/plain',p.id+':'+dow)}; el.onclick=()=>{const nt=prompt('Neue Zeit HH:MM',p.time); if(nt){p.time=nt; savePlans(plans()); renderCalendar(); renderDashboard()}}; body.appendChild(el)})});
+ const bodyEl=$('#calBody'); bodyEl.ondragover=e=>e.preventDefault(); bodyEl.ondrop=e=>{e.preventDefault(); const [id,dow]=e.dataTransfer.getData('text/plain').split(':'); const y=e.offsetY; const h=Math.max(6,Math.min(23,Math.floor(y/40)+6)); const m=Math.round((y%40)/40*60/5)*5; const p=plans().find(x=>x.id===id); if(p){p.time=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`; if(!p.days.includes(+dow)) p.days.push(+dow); savePlans(plans()); renderCalendar(); renderDashboard(); toast('Termin verschoben')}}
+}
+window.addPlan=()=>{const m=myMeds()[0]; if(!m){toast('Erst Medikament wählen'); go('meds'); return} const t=prompt('Uhrzeit HH:MM','08:00'); if(!t) return; const p=plans(); p.push({id:crypto.randomUUID(),pzn:m.pzn,time:t,days:[1,2,3,4,5,0,6]}); savePlans(p); renderCalendar()};
+window.clearPlans=()=>{if(confirm('Alle Pläne löschen?')){savePlans([]);renderCalendar();renderDashboard()}}
 
-  // Scanner
-  let stream=null, detector=null, scanning=false, scanMode='pzn';
-  const video = $('#video');
-  $('#scanTabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{ $$('#scanTabs button').forEach(x=>x.classList.remove('active')); b.classList.add('active'); scanMode=b.dataset.tab; $('#scanResult').textContent='Bereit: '+(scanMode==='pzn'?'PZN':'eRezept') });
-  async function startCam(){
-    try{
-      stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}, audio:false});
-      video.srcObject = stream; await video.play(); scanning=true;
-      if('BarcodeDetector' in window){try{detector = new BarcodeDetector({formats:['ean_13','ean_8','code_128','code_39','qr_code','data_matrix']})}catch{detector=null}}
-      $('#scanResult').textContent='Scanne... Kamera auf Barcode/QR halten';
-      tick(); toast('Kamera aktiv')
-    }catch(e){alert('Kamera nicht erlaubt oder verfügbar');}
-  }
-  function stopCam(){ scanning=false; if(stream){stream.getTracks().forEach(t=>t.stop()); stream=null} video.pause(); video.srcObject=null }
-  $('#btnStartCam').onclick=startCam; $('#btnStopCam').onclick=()=>{stopCam(); toast('Kamera gestoppt')};
-  async function tick(){
-    if(!scanning) return;
-    if(detector){
-      try{
-        const codes = await detector.detect(video);
-        if(codes && codes.length){ handleCode(codes[0].rawValue); return; }
-      }catch{}
-    }
-    requestAnimationFrame(tick);
-  }
-  function handleCode(raw){
-    stopCam();
-    const res = $('#scanResult');
-    if(scanMode==='pzn' || /^[0-9]{8,14}$/.test(raw)){
-      const pzn = raw.replace(/\D/g,'').slice(-8).padStart(8,'0');
-      const found = MED_DB.find(m=>m.pzn===pzn);
-      res.innerHTML = `<b>PZN erkannt:</b> ${pzn}<br>${found?`Treffer: <b>${found.name}</b> (${found.wirkstoff})`: 'Nicht in Datenbank – kann trotzdem übernommen werden.'} <div style="margin-top:8px"><button class="btn small" id="takePzn">Übernehmen</button></div>`;
-      $('#takePzn').onclick=()=>{ if(found){ addFromDB(found.id); } else { const med={id:'m'+Date.now(),name:`PZN ${pzn}`,wirkstoff:'',pzn,form:'',dosis:'1-0-0',times:['08:00'],start:new Date().toISOString().slice(0,10),bestand:30}; state.meds.push(med); save(); } showView('meds'); toast('Übernommen') }
-    } else {
-      res.innerHTML = `<b>eRezept QR erkannt</b><div class="sub" style="word-break:break-all;margin-top:6px">${raw}</div><div style="margin-top:8px"><button class="btn small" id="takeQR">Als Notiz speichern</button></div>`;
-      $('#takeQR').onclick=()=>{ state.meds.push({id:'m'+Date.now(),name:'eRezept Import',wirkstoff:raw.slice(0,40),pzn:'',form:'',dosis:'',times:['08:00'],start:new Date().toISOString().slice(0,10),bestand:0}); save(); toast('Gespeichert') }
-    }
-  }
-  $('#btnManual').onclick=()=>handleCode($('#manualCode').value.trim());
+// --- Scanner (BarcodeDetector) ---
+let stream=null, detector=null, scanning=false;
+async function listCams(){const devs=await navigator.mediaDevices.enumerateDevices(); const cams=devs.filter(d=>d.kind==='videoinput'); const sel=$('#camSelect'); sel.innerHTML=cams.map((c,i)=>`<option value="${c.deviceId}">${c.label||'Kamera '+(i+1)}</option>`).join('');}
+async function startCam(){try{await listCams(); const id=$('#camSelect').value; const constraints={video:{deviceId:id?{exact:id}:undefined,facingMode:'environment',width:{ideal:1280},height:{ideal:720}}}; stream=await navigator.mediaDevices.getUserMedia(constraints); $('#video').srcObject=stream; scanning=true; scanLoop(); toast('Scanner aktiv')}catch(e){alert('Kamera-Fehler: '+e.message)}}
+function stopCam(){scanning=false; if(stream){stream.getTracks().forEach(t=>t.stop()); stream=null}}
+async function scanLoop(){if(!scanning) return; const video=$('#video'); if('BarcodeDetector' in window){try{detector=detector||new BarcodeDetector({formats:['qr_code','ean_13','ean_8','upc_a','code_128','code_39','data_matrix']}); const codes=await detector.detect(video); if(codes.length){handleCode(codes[0].rawValue); stopCam(); return}}catch{}} requestAnimationFrame(scanLoop)}
+function parseErx(txt){ // deutsches eRezept grob erkennen
+ if(/eRezept|eprescription|task|Medication|GEM/i.test(txt) || txt.startsWith('http') && txt.includes('/')){return {type:'eRezept',raw:txt}}; return null}
+function handleCode(raw){const box=$('#scanResult'); box.style.display='block'; let html=`<h3>Scan-Ergebnis</h3><div class="muted" style="word-break:break-all">${raw}</div>`; const erx=parseErx(raw); if(erx){html+=`<div class="item" style="margin-top:8px"><div class="icon">🧾</div><div class="meta"><b>eRezept erkannt</b><small>Deutsches eRezept (QR)</small></div><button class="btn small" onclick="importFromErx('${encodeURIComponent(raw)}')">Übernehmen</button></div>`}
+ let pzn=null; const digits=raw.replace(/\D/g,''); if(digits.length>=8){ // PZN als EAN-13: letzte 8 vor Prüfziffer oft
+   if(digits.length===13){ pzn=digits.slice(4,12)} else if(digits.length===8){pzn=digits} else {pzn=digits.slice(-8)}
+ }
+ if(pzn){const med=MEDS.find(m=>m.pzn===pzn); html+=`<div class="item" style="margin-top:8px"><div class="icon">💊</div><div class="meta"><b>PZN ${pzn}</b><small>${med?med.name:'Unbekannt – aus DB hinzufügen'}</small></div>${med?`<button class="btn small" onclick="toggleMine('${pzn}');go('meds')">Hinzufügen</button>`:''}</div>`}
+ box.innerHTML=html; triggerHaptic(2)}
+window.importFromErx=enc=>{const raw=decodeURIComponent(enc); toast('eRezept übernommen (Demo)'); const m=myMeds(); if(!m.length && MEDS[0]){saveMy([MEDS[0]])} go('dashboard')}
+$('#btnStartCam').onclick=startCam; $('#btnStopCam').onclick=stopCam;
 
-  // Klingeltöne WebAudio
-  let audioCtx;
-  function ensureAudio(){ if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)() }
-  function playTone(name){
-    ensureAudio(); const ctx=audioCtx; const now=ctx.currentTime;
-    const beep=(freq,dur,type='sine',vol=.25,at=0)=>{const o=ctx.createOscillator(); const g=ctx.createGain(); o.type=type; o.frequency.value=freq; o.connect(g); g.connect(ctx.destination); g.gain.setValueAtTime(0,now+at); g.gain.linearRampToValueAtTime(vol,now+at+0.01); g.gain.exponentialRampToValueAtTime(0.001,now+at+dur); o.start(now+at); o.stop(now+at+dur+0.03)};
-    switch(name){
-      case 'klassisch': beep(880,.18,'sine',.3,0); beep(880,.18,'sine',.3,.3); break;
-      case 'sanft': beep(523,.9,'sine',.18,0); break;
-      case 'dringend': for(let i=0;i<5;i++) beep(1000,.12,'square',.32,i*0.2); break;
-      case 'piep': beep(2000,.08,'sine',.28,0); break;
-      case 'melodie': [523,659,784,659,523].forEach((f,i)=>beep(f,.16,'triangle',.22,i*0.18)); break;
-    }
-  }
-  $('#testTone').onclick=()=>playTone($('#selTone').value);
-  $('#selTone').value = state.settings.tone;
-  $('#selTone').onchange=()=>{state.settings.tone=$('#selTone').value; save()};
+// --- Töne (5) Web Audio + Vibration ---
+let audioCtx=null; const tones=[
+ {name:'Klassik Doppel-Beep', vib:[300,150,300]},
+ {name:'Sanft Aufsteigend', vib:[100,50,100]},
+ {name:'Triple Chirp', vib:[200,100,200]},
+ {name:'Marimba', vib:[400,200,400]},
+ {name:'SOS Alarm', vib:[150,100,150,100,500]},
+];
+function ensureAudio(){if(!audioCtx)audioCtx=new (window.AudioContext||window.webkitAudioContext)()}
+function playTone(id=1,len=1800){ensureAudio(); const now=audioCtx.currentTime; const master=audioCtx.createGain(); master.gain.value=0.0001; master.connect(audioCtx.destination); master.gain.exponentialRampToValueAtTime(0.3,now+0.02);
+ const beep=(f,t0,d,type='sine')=>{const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type;o.frequency.value=f;o.connect(g);g.connect(master);g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(0.5,t0+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);o.start(t0);o.stop(t0+d+0.02)}; const seq=()=>{
+  if(id===1){beep(880,now,0.18);beep(880,now+0.3,0.18)}
+  if(id===2){beep(600,now,0.25,'triangle');beep(700,now+0.28,0.25,'triangle');beep(800,now+0.56,0.35,'triangle')}
+  if(id===3){beep(1200,now,0.12);beep(1200,now+0.18,0.12);beep(1200,now+0.36,0.12)}
+  if(id===4){[784,988,1046,1318].forEach((f,i)=>beep(f,now+i*0.14,0.12,'sine'))}
+  if(id===5){for(let i=0;i<3;i++){beep(950,now+i*0.22,0.14,'square');beep(650,now+i*0.22+0.12,0.14,'square')}}
+ }; seq(); setTimeout(()=>{try{master.disconnect()}catch{}},len);}
+function triggerHaptic(id){const v=tones[(id-1)%5]?.vib||[200]; if(navigator.vibrate) navigator.vibrate(v)}
+function renderTones(){const box=$('#toneList'); const sel=store.get('struktiva_tone',1); box.innerHTML=tones.map((t,i)=>`<div class="item"><div class="icon">🔔</div><div class="meta"><b>${i+1}. ${t.name}</b><small>Vibration: ${t.vib.join('-')}ms</small></div><div class="row"><button class="btn small" onclick="previewTone(${i+1})">Test</button><button class="btn small ${sel===i+1?'acc':''}" onclick="chooseTone(${i+1})">${sel===i+1?'Aktiv':'Wählen'}</button></div></div>`).join('')}
+window.previewTone=i=>{playTone(i); triggerHaptic(i); notify('struktiva – Ton ' + i, 'Klingelton-Test', i)}
+window.chooseTone=i=>{store.set('struktiva_tone',i); renderTones(); toast('Klingelton '+i+' gespeichert')}
 
-  // Service Worker & Push
-  let swReg=null;
-  async function registerSW(){
-    const code = `
-      const CACHE='struktiva-v97';
-      self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(['./'])).catch(()=>{})); self.skipWaiting()});
-      self.addEventListener('activate',e=>{e.waitUntil(self.clients.claim())});
-      self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(resp=>{const copy=resp.clone(); caches.open(CACHE).then(c=>c.put(e.request,copy)); return resp})).catch(()=>caches.match('./')) )});
-      self.addEventListener('notificationclick',e=>{e.notification.close(); e.waitUntil(clients.matchAll({type:'window'}).then(list=>{const c=list.find(w=>w.focused)||list[0]; if(c) return c.focus(); return clients.openWindow('./')}))});
-    `;
-    const blob = new Blob([code],{type:'application/javascript'}); const url = URL.createObjectURL(blob);
-    try{ swReg = await navigator.serviceWorker.register(url,{scope:'./'});}catch(e){console.warn('SW',e)}
-  }
-  if('serviceWorker' in navigator){ registerSW() }
+// --- Notifications / Service Worker ---
+let swReg=null;
+async function initSW(){try{const code=`self.addEventListener('install',e=>self.skipWaiting());self.addEventListener('activate',e=>self.clients.claim());self.addEventListener('notificationclick',e=>{e.notification.close();e.waitUntil(clients.matchAll({type:'window'}).then(ws=>ws[0]?.focus()||clients.openWindow('./')))});self.addEventListener('push',e=>{const d=e.data?e.data.json():{};self.registration.showNotification(d.title||'struktiva',{body:d.body||'',vibrate:d.vibrate||[200,100,200],badge:'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22/>',icon:'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22><rect width=%22512%22 height=%22512%22 rx=%22112%22 fill=%22%230ea5e9%22/><path d=%22M148 256h216M256 148v216%22 stroke=%22white%22 stroke-width=%2240%22 stroke-linecap=%22round%22/></svg>'})});`; const blob=new Blob([code],{type:'application/javascript'}); swReg=await navigator.serviceWorker.register(URL.createObjectURL(blob)); updateNotifState()}catch(e){console.warn(e)}}
+function updateNotifState(){$('#notifState').textContent='Berechtigung: '+Notification.permission+(swReg?' • SW aktiv':'')}
+async function enableNotifications(){try{const p=await Notification.requestPermission(); updateNotifState(); if(p==='granted'){toast('Benachrichtigungen aktiv'); scheduleSilentKeepalive()}else{toast('Bitte erlauben')}}catch{}}
+window.enableNotifications=enableNotifications;
+function notify(title,body,toneId){const t=toneId||store.get('struktiva_tone',1); const vib=tones[t-1].vib; if(swReg){swReg.showNotification(title,{body, vibrate:vib, requireInteraction:true, tag:'struktiva-med', renotify:true, icon:'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"/>'})}else if(Notification.permission==='granted'){new Notification(title,{body,vibrate:vib})}}
+window.scheduleTest=()=>setTimeout(()=>{notify('struktiva – Test','Push funktioniert!', store.get('struktiva_tone',1)); playTone(store.get('struktiva_tone',1))},5000);
+function scheduleSilentKeepalive(){/* für bessere Hintergrundweckung auf Android */ setInterval(()=>{}, 30000)}
 
-  async function enableNotify(){
-    if(!('Notification' in window)) return alert('Nicht unterstützt');
-    const perm = await Notification.requestPermission();
-    state.settings.notify = perm==='granted'; save(); updateNotifyUI();
-    if(perm==='granted' && swReg){ swReg.showNotification('struktiva',{body:'Erinnerungen sind aktiv',icon:'data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 512 512%27%3E%3Crect width=%27512%27 height=%27512%27 rx=%27120%27 fill=%27%230ea5e9%27/%3E%3C/svg%3E'}) ; toast('Benachrichtigungen aktiv')}
-  }
-  function updateNotifyUI(){ const on = state.settings.notify && Notification.permission==='granted'; $('#swNotify').classList.toggle('on',on) }
-  $('#swNotify').onclick=enableNotify; updateNotifyUI();
+// --- Alarm Scheduler (für gesperrten Bildschirm optimiert) ---
+let lastAlarmKey=''; setInterval(checkAlarms, 30000); checkAlarms();
+function checkAlarms(){const now=new Date(); const key=now.toISOString().slice(0,16); if(key===lastAlarmKey) return; lastAlarmKey=key; const due=expandPlans(1).filter(e=>Math.abs(e.ts - now.getTime()) < 65000); due.forEach(e=>{const m=MEDS.find(x=>x.pzn===e.pzn); const title='struktiva – Einnahme jetzt'; const body=m?m.name:'Medikament'; notify(title, body); playTone(store.get('struktiva_tone',1)); triggerHaptic(store.get('struktiva_tone',1)); try{navigator.wakeLock?.request('screen')}catch{}})}
+window.testAlarm=()=>{const t=store.get('struktiva_tone',1); playTone(t); triggerHaptic(t); notify('struktiva – Alarm Test','Das ist Klingelton '+t, t)}
 
-  setInterval(()=>{
-    const now=new Date();
-    state.intake.forEach(i=>{
-      if(i.taken || i.notified) return;
-      const dt=new Date(i.datetime); const diff=(dt-now)/60000;
-      if(diff<=0 && diff>-3){
-        i.notified=true; save(); playTone(state.settings.tone);
-        if(state.settings.notify && Notification.permission==='granted' && swReg){
-          const med=state.meds.find(m=>m.id===i.medId);
-          swReg.showNotification('Einnahme fällig',{body:`${med?.name||'Medikament'} – ${dt.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})}`,tag:i.id,requireInteraction:true})
-        }
-      }
-    });
-    renderDash();
-  },30000);
+// --- Export / Import ---
+function exportData(){const data={kunde:store.get('struktiva_kunde',''),my:myMeds(),plans:plans(),logs:logs(),tone:store.get('struktiva_tone',1)}; const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='struktiva-backup.json'; a.click()}
+function importData(e){const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{try{const d=JSON.parse(r.result); if(d.kunde)saveName(d.kunde); if(d.my)saveMy(d.my); if(d.plans)savePlans(d.plans); if(d.logs)saveLogs(d.logs); if(d.tone)store.set('struktiva_tone',d.tone); toast('Import ok'); loadName(); renderMeds(); renderDashboard(); renderCalendar()}catch{alert('Datei ungültig')}}; r.readAsText(f)}
 
-  // Install Prompt
-  let deferredPrompt=null;
-  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault(); deferredPrompt=e; $('#btnInstall').disabled=false; $('#installHint').textContent='Bereit zur Installation.'});
-  $('#btnInstall').onclick=async()=>{ if(!deferredPrompt) return; deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt=null; $('#btnInstall').disabled=true };
+// --- Init ---
+function init(){loadName(); renderTones(); renderMeds(); renderDashboard(); renderCalendar(); initSW(); updateNotifState(); if('BarcodeDetector' in window){listCams().catch(()=>{})}else{$('#scanResult').style.display='block'; $('#scanResult').innerHTML='<div class="muted">Scanner benötigt Android Chrome mit BarcodeDetector. Auf iOS nutze Foto-Upload (in Planung).</div>'}}
+document.addEventListener('DOMContentLoaded',init);
 
-  // Export/Import
-  $('#exportData').onclick=()=>{
-    const data={user:state.user,meds:state.meds,intake:state.intake,settings:state.settings,exported:new Date().toISOString(),app:'struktiva v9.7'};
-    const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='struktiva-backup.json'; a.click(); URL.revokeObjectURL(url)
-  };
-  $('#importData').onchange=e=>{ const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{try{const d=JSON.parse(r.result); state.user=d.user||state.user; state.meds=d.meds||[]; state.intake=d.intake||[]; state.settings=d.settings||state.settings; save(); renderUser(); renderDash(); renderMyMeds(); renderCalendar(); toast('Import ok')}catch{alert('Fehler beim Import')}}; r.readAsText(f) };
-  $('#clearData').onclick=()=>{ if(confirm('Wirklich alle lokalen Daten löschen?')){localStorage.clear(); location.reload()} };
-
-  // Demo-Daten mit Prasugrel
-  if(state.meds.length===0){
-    const demo = MED_DB.find(m=>m.name.includes('Prasugrel'));
-    if(demo){ state.meds.push({id:'m1',name:demo.name,wirkstoff:demo.wirkstoff,pzn:demo.pzn,form:demo.form,dosis:'1-0-0',times:['08:00','20:00'],start:new Date().toISOString().slice(0,10),bestand:28}); const now=new Date(); ['08:00','20:00'].forEach(t=>{const [h,m]=t.split(':'); const d=new Date(); d.setHours(+h,+m,0,0); if(d<now) d.setDate(d.getDate()+1); state.intake.push({id:'i'+t,medId:'m1',datetime:d.toISOString(),taken:false}) }); save() }
-  }
-
-  renderDB(); renderMyMeds(); renderDash(); renderCalendar();
-  document.addEventListener('visibilitychange',()=>{ if(document.hidden) stopCam() });
+// Wake audio on first tap (iOS)
+document.addEventListener('click',()=>{ensureAudio(); if(audioCtx && audioCtx.state==='suspended') audioCtx.resume()},{once:true});
 })();
 </script>
 </body>

@@ -1,0 +1,11 @@
+VOR GO-LIVE AUSFÜLLEN:
+
+In index.html suchen nach:
+[Dein Name/Firma] → eintragen
+[Straße] → eintragen
+[PLZ Ort] → eintragen
+[E-Mail] → eintragen
+
+Oder in showPage('impressum') anpassen.
+
+Rechtlich erforderlich in DE.

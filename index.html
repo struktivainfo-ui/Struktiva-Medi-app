@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<title>struktiva – Medikamenten App v9.8.1</title>
+<title>struktiva – Medikamenten App v9.9</title>
 <meta name="theme-color" content="#0ea5e9">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22struktiva%22%2C%22short_name%22%3A%22struktiva%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23020617%22%2C%22theme_color%22%3A%22%230ea5e9%22%2C%22description%22%3A%22struktiva%20v9.8.1%20Medikamenten%20PWA%20offline-first%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20512%20512%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20rx%3D%27112%27%20fill%3D%27%230ea5e9%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27white%27%20stroke-width%3D%2732%27%20stroke-linecap%3D%27round%27%3E%3Cpath%20d%3D%27M176%20256h160M256%20176v160%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22struktiva%22%2C%22short_name%22%3A%22struktiva%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23020617%22%2C%22theme_color%22%3A%22%230ea5e9%22%2C%22description%22%3A%22struktiva%20v9.9%20Medikamenten%20PWA%20offline-first%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20512%20512%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20rx%3D%27112%27%20fill%3D%27%230ea5e9%27%2F%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27white%27%20stroke-width%3D%2732%27%20stroke-linecap%3D%27round%27%3E%3Cpath%20d%3D%27M176%20256h160M256%20176v160%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
 <style>
 :root{--bg:#020617;--bg2:#0b1220;--card:#0f172acc;--card2:#111e36cc;--line:#1e293b;--text:#e2e8f0;--muted:#94a3b8;--acc:#0ea5e9;--ok:#22c55e;--warn:#f59e0b;--err:#ef4444}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -88,7 +88,7 @@ nav svg{width:22px;height:22px}
     <div class="logo">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
     </div>
-    <div>strukt<span style="color:#7dd3fc">iva</span> <small class="muted">v9.8.1</small></div>
+    <div>strukt<span style="color:#7dd3fc">iva</span> <small class="muted">v9.9</small></div>
   </div>
   <div class="userbox">
     <small>Hallo</small>
@@ -244,8 +244,8 @@ nav svg{width:22px;height:22px}
       </div>
 
       <div class="card">
-        <h3>Über struktiva v9.8.1</h3>
-        <p class="muted">Verbesserungen gegenüber v9.8.1: echtes Web Manifest für Install-Prompt, Kundename persistent oben, 5 eigene Klingeltöne, verbesserter QR/PZN-Scanner mit Kameraauswahl, 600+ Arzneimittel lokal, Dashboard mit Adhärenz, Drag-Kalender, Push mit Service Worker, komplett offline-first, alles inline ohne CDN.</p>
+        <h3>Über struktiva v9.9</h3>
+        <p class="muted">Verbesserungen gegenüber v9.9: echtes Web Manifest für Install-Prompt, Kundename persistent oben, 5 eigene Klingeltöne, verbesserter QR/PZN-Scanner mit Kameraauswahl, 600+ Arzneimittel lokal, Dashboard mit Adhärenz, Drag-Kalender, Push mit Service Worker, komplett offline-first, alles inline ohne CDN.</p>
         <div class="row" style="flex-wrap:wrap">
           <span class="kbd">PWA</span><span class="kbd">DE</span><span class="kbd">DSGVO-freundlich</span><span class="kbd">100% lokal</span>
         </div>
@@ -411,122 +411,131 @@ document.addEventListener('click',()=>{ensureAudio(); if(audioCtx && audioCtx.st
 })();
 </script>
 
+<!-- struktiva v9.9 - Rechtssicher -->
+<style>
+.legal-modal{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:20000;display:flex;align-items:center;justify-content:center;padding:20px}
+.legal-box{background:#0f172a;border:2px solid #22c55e;border-radius:16px;max-width:520px;width:100%;padding:24px;color:#e2e8f0}
+.legal-box h2{color:#22c55e;margin:0 0 12px;font-size:20px}
+.legal-box p{margin:8px 0;line-height:1.5;font-size:14px}
+.legal-box .warn{background:#7f1d1d;border-left:4px solid #ef4444;padding:12px;margin:12px 0;border-radius:8px}
+.legal-btn{background:#22c55e;color:#0f172a;border:none;padding:12px 20px;border-radius:8px;font-weight:700;width:100%;margin-top:16px;cursor:pointer}
+.legal-links{display:flex;gap:12px;margin-top:16px;font-size:12px;justify-content:center}
+.legal-links a{color:#94a3b8;text-decoration:underline;cursor:pointer}
+.pin-overlay{position:fixed;inset:0;background:#020617;z-index:19999;display:flex;align-items:center;justify-content:center}
+.pin-box{background:#0f172a;padding:32px;border-radius:16px;text-align:center;border:1px solid #334155}
+</style>
+
+<div id="legal-first" class="legal-modal" style="display:none">
+  <div class="legal-box">
+    <h2>struktiva – Wichtiger Hinweis</h2>
+    <div class="warn">
+      <strong>Kein Medizinprodukt.</strong> Diese App ersetzt keine ärztliche Beratung, Diagnose oder Behandlung.
+    </div>
+    <p><strong>Positionierung:</strong> "Die einfachste Medikamenten-Erinnerung für den Alltag – ohne Chaos."</p>
+    <p>• Alle Daten bleiben <strong>lokal auf deinem Gerät</strong> (keine Cloud)</p>
+    <p>• Erinnerungen sind Hilfestellung, keine Garantie</p>
+    <p>• Nutzung auf eigene Verantwortung</p>
+    <p>• Bei medizinischen Fragen: Arzt/Apotheker fragen</p>
+    <button class="legal-btn" onclick="acceptLegal()">Verstanden & starten</button>
+    <div class="legal-links">
+      <a onclick="showPage('impressum')">Impressum</a>
+      <a onclick="showPage('datenschutz')">Datenschutz</a>
+      <a onclick="showPage('agb')">AGB</a>
+    </div>
+  </div>
+</div>
+
+<div id="pin-lock" class="pin-overlay" style="display:none">
+  <div class="pin-box">
+    <h3 style="color:#22c55e;margin-bottom:16px">struktiva</h3>
+    <p style="color:#94a3b8;margin-bottom:20px">PIN eingeben</p>
+    <input id="pin-input" type="password" inputmode="numeric" maxlength="6" style="background:#020617;border:1px solid #334155;color:white;padding:12px;font-size:20px;text-align:center;width:160px;border-radius:8px;letter-spacing:8px" />
+    <button onclick="checkPin()" style="display:block;width:160px;margin:12px auto;background:#22c55e;color:#0f172a;border:none;padding:10px;border-radius:8px;font-weight:600">Entsperren</button>
+    <p style="font-size:11px;color:#64748b;margin-top:12px">Erster Start: PIN festlegen</p>
+  </div>
+</div>
+
 <script>
-// struktiva v9.8.1.1 - Kamera Fix
-window.struktivaCamera = {
-  stream: null,
-  async startScanner(videoElement, onResult) {
-    try {
-      // Stoppe alte Streams
-      if (this.stream) {
-        this.stream.getTracks().forEach(t => t.stop());
-      }
-      
-      // Prüfe Berechtigung
-      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        throw new Error('Kamera nicht unterstützt');
-      }
-      
-      // Frage explizit nach Kamera
-      this.stream = await navigator.mediaDevices.getUserMedia({
-        video: {
-          facingMode: { ideal: 'environment' },
-          width: { ideal: 1280 },
-          height: { ideal: 720 }
-        },
-        audio: false
-      });
-      
-      videoElement.srcObject = this.stream;
-      await videoElement.play();
-      
-      // ZXing Scanner starten (falls vorhanden)
-      if (window.ZXing) {
-        const codeReader = new ZXing.BrowserMultiFormatReader();
-        const scan = async () => {
-          try {
-            const result = await codeReader.decodeOnceFromVideoDevice(undefined, videoElement);
-            if (result && onResult) onResult(result.text);
-          } catch(e) {
-            if (this.stream) requestAnimationFrame(scan);
-          }
-        };
-        scan();
-      }
-      
-      return true;
-    } catch (err) {
-      console.error('Kamera-Fehler:', err);
-      let msg = 'Kamera-Fehler: ';
-      if (err.name === 'NotAllowedError') {
-        msg += 'Bitte in den Browser-Einstellungen Kamera für struktiva erlauben. iPhone: Einstellungen > Safari > Kamera';
-      } else if (err.name === 'NotFoundError') {
-        msg += 'Keine Kamera gefunden';
-      } else if (err.name === 'NotReadableError') {
-        msg += 'Kamera wird bereits verwendet. Schließe andere Apps.';
-      } else {
-        msg += err.message;
-      }
-      alert(msg + '\n\nTipp: Seite neu laden und erneut erlauben.');
-      return false;
-    }
-  },
+// v9.9 Legal & PIN
+(function(){
+  const LEGAL_KEY = 'struktiva_legal_v99';
+  const PIN_KEY = 'struktiva_pin';
   
-  stop() {
-    if (this.stream) {
-      this.stream.getTracks().forEach(t => t.stop());
-      this.stream = null;
+  function initLegal(){
+    if(!localStorage.getItem(LEGAL_KEY)){
+      document.getElementById('legal-first').style.display = 'flex';
+    } else {
+      initPin();
     }
   }
-};
-
-// Ersetze alle Scanner-Buttons
-document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    document.querySelectorAll('button').forEach(btn => {
-      if (btn.textContent.includes('Scannen') || btn.textContent.includes('Scanner') || btn.textContent.includes('PZN')) {
-        btn.onclick = async (e) => {
-          e.preventDefault();
-          // Erstelle Video-Overlay
-          let overlay = document.getElementById('camera-overlay');
-          if (!overlay) {
-            overlay = document.createElement('div');
-            overlay.id = 'camera-overlay';
-            overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:black;z-index:10000;display:flex;flex-direction:column';
-            overlay.innerHTML = `
-              <div style="padding:12px;background:#0f172a;color:white;display:flex;justify-content:space-between;align-items:center">
-                <span>Scanner - Kamera auf Code richten</span>
-                <button id="close-cam" style="background:#ef4444;color:white;border:none;padding:8px 16px;border-radius:6px">Schließen</button>
-              </div>
-              <video id="scanner-video" style="flex:1;width:100%;object-fit:cover" autoplay playsinline></video>
-              <div style="padding:12px;background:#0f172a;color:#94a3b8;text-align:center;font-size:12px">
-                Bei Fehler: Einstellungen > Kamera erlauben
-              </div>
-            `;
-            document.body.appendChild(overlay);
-            document.getElementById('close-cam').onclick = () => {
-              window.struktivaCamera.stop();
-              overlay.remove();
-            };
-          }
-          const video = document.getElementById('scanner-video');
-          const ok = await window.struktivaCamera.startScanner(video, (code) => {
-            window.struktivaCamera.stop();
-            overlay.remove();
-            // Füge Code in Input ein
-            const input = document.querySelector('input[type="text"], input[placeholder*="PZN"], input[placeholder*="Code"]');
-            if (input) {
-              input.value = code;
-              input.dispatchEvent(new Event('input', {bubbles:true}));
-            }
-            alert('Gescannt: ' + code);
-          });
-          if (!ok) overlay.remove();
-        };
+  
+  window.acceptLegal = function(){
+    localStorage.setItem(LEGAL_KEY, '1');
+    document.getElementById('legal-first').style.display = 'none';
+    initPin();
+  };
+  
+  function initPin(){
+    const pin = localStorage.getItem(PIN_KEY);
+    if(pin){
+      document.getElementById('pin-lock').style.display = 'flex';
+      setTimeout(()=>document.getElementById('pin-input').focus(), 100);
+    }
+  }
+  
+  window.checkPin = function(){
+    const input = document.getElementById('pin-input').value;
+    const saved = localStorage.getItem(PIN_KEY);
+    if(!saved){
+      if(input.length >= 4){
+        localStorage.setItem(PIN_KEY, input);
+        document.getElementById('pin-lock').style.display = 'none';
+      } else {
+        alert('Mindestens 4 Ziffern');
       }
-    });
-  }, 1000);
-});
+    } else if(input === saved){
+      document.getElementById('pin-lock').style.display = 'none';
+    } else {
+      alert('Falscher PIN');
+      document.getElementById('pin-input').value = '';
+    }
+  };
+  
+  // Enter-Taste
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Enter' && document.getElementById('pin-lock').style.display !== 'none'){
+      checkPin();
+    }
+  });
+  
+  // Rechtliche Seiten
+  window.showPage = function(page){
+    const content = {
+      impressum: `<h2>Impressum</h2><p><strong>Angaben gemäß § 5 TMG</strong></p><p>[Dein Name/Firma]<br>[Straße]<br>[PLZ Ort]</p><p>Kontakt: [E-Mail]<br>Telefon: [Telefon]</p><p>Verantwortlich für den Inhalt: [Name]</p><p style="margin-top:20px;font-size:12px;color:#94a3b8">Hinweis: Dies ist eine Erinnerungs-App, kein Medizinprodukt.</p>`,
+      datenschutz: `<h2>Datenschutzerklärung</h2><p><strong>1. Keine Cloud-Speicherung</strong><br>Alle Daten werden ausschließlich lokal auf deinem Gerät gespeichert (localStorage/IndexedDB). Es erfolgt keine Übertragung an Server.</p><p><strong>2. Keine Tracker</strong><br>Keine Cookies, kein Google Analytics, keine Werbung.</p><p><strong>3. Berechtigungen</strong><br>Kamera: nur für Barcode-Scan, Bilder werden nicht gespeichert.<br>Benachrichtigungen: nur für Erinnerungen.</p><p><strong>4. Deine Rechte (DSGVO)</strong><br>Da keine Daten übertragen werden, kannst du alle Daten jederzeit in der App löschen (Einstellungen > Daten löschen).</p>`,
+      agb: `<h2>Nutzungsbedingungen</h2><p><strong>§1 Kein Medizinprodukt</strong><br>struktiva ist eine reine Erinnerungs-App. Sie ersetzt keine ärztliche Beratung.</p><p><strong>§2 Eigenverantwortung</strong><br>Du bist selbst verantwortlich für die korrekte Einnahme deiner Medikamente.</p><p><strong>§3 Haftung</strong><br>Keine Haftung für vergessene Einnahmen oder technische Fehler. Nutzung auf eigenes Risiko.</p><p><strong>§4 Lokale Speicherung</strong><br>Daten gehen bei Geräteverlust verloren. Regelmäßig exportieren!</p>`
+    };
+    const modal = document.createElement('div');
+    modal.className = 'legal-modal';
+    modal.innerHTML = `<div class="legal-box"><div>${content[page]}</div><button class="legal-btn" onclick="this.closest('.legal-modal').remove()">Schließen</button></div>`;
+    modal.onclick = e => { if(e.target === modal) modal.remove() };
+    document.body.appendChild(modal);
+  };
+  
+  // Füge Footer-Links ein
+  function addFooter(){
+    const footer = document.createElement('div');
+    footer.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#020617;border-top:1px solid #1e293b;padding:8px;text-align:center;font-size:11px;color:#64748b;z-index:1000';
+    footer.innerHTML = `struktiva v9.9 • <a onclick="showPage('impressum')" style="color:#64748b;cursor:pointer">Impressum</a> • <a onclick="showPage('datenschutz')" style="color:#64748b;cursor:pointer">Datenschutz</a> • <span style="color:#ef4444">Kein Medizinprodukt</span>`;
+    document.body.appendChild(footer);
+    document.body.style.paddingBottom = '32px';
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(initLegal, 300);
+    setTimeout(addFooter, 500);
+  });
+})();
 </script>
 
 </body>

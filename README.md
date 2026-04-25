@@ -1,0 +1,1 @@
+# Struktiva-Medi-app
